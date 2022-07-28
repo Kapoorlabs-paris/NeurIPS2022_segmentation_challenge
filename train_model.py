@@ -34,6 +34,7 @@ train_unet = True
 train_star = True
 train_seed_unet = True
 
+pattern = '*.tiff'
 
 SmartSeeds2D(base_dir = base_dir, 
              npz_filename = npz_filename, 
@@ -56,6 +57,7 @@ SmartSeeds2D(base_dir = base_dir,
              use_gpu = use_gpu_opencl,  
              batch_size = batch_size, 
              depth = depth, 
+             pattern = pattern,
              kern_size = kern_size, 
              startfilter = startfilter, 
              n_rays = n_rays, 
