@@ -10,5 +10,5 @@ Path(outputdir).mkdir(exist_ok=True)
 pattern = '*.png'
 files = list(inputdir.glob(pattern))
 for file in files:
-    image = imageio(file)
+    image = imageio.imread(file)
     print(image.shape)
