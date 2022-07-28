@@ -1,6 +1,6 @@
-from os import mkdir
+import os
 from pathlib import Path
-from tifffile import imread, imwrite
+from tifffile import imwrite
 import imageio
 
 
@@ -11,4 +11,4 @@ pattern = '*.png'
 files = list(inputdir.glob(pattern))
 for file in files:
     image = imageio.imread(file)
-    print(image.shape)
+    imwrite(outputdir + '/' + os.path.splitext(file.name)[0] + '.tiff', image)
