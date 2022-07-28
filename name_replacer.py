@@ -14,5 +14,5 @@ for file in files:
     search_output = re.search(remove_string, file.name)
     image = imread(file)
     if search_output is not None:
-          save_name = file.name[0:search_output.start]    
+          save_name = file.name[0:search_output.start()]    
     imwrite(outputdir + '/' + save_name + '.tiff', image)
