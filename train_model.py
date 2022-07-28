@@ -34,7 +34,7 @@ train_unet = True
 train_star = True
 train_seed_unet = True
 
-pattern = '*.tiff'
+pattern = '.tiff'
 
 SmartSeeds2D(base_dir = base_dir, 
              npz_filename = npz_filename, 
