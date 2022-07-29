@@ -61,7 +61,7 @@ generate_npz = True
 train_unet = True
 train_star = True
 train_seed_unet = True
-axes = 'YXC'
+axes = 'YX'
 axis_norm = (0,1,2)
 
 
@@ -83,6 +83,7 @@ SmartSeeds2D(base_dir = base_dir,
              train_seed_unet = train_seed_unet,
              patch_x= patch_x, 
              patch_y= patch_y, 
+             RGB = True,
              axes = axes,
              axis_norm = axis_norm, 
              use_gpu = use_gpu_opencl,  
