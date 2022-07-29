@@ -24,7 +24,7 @@ def channelizer(file):
 with concurrent.futures.ThreadPoolExecutor(max_workers = nthreads) as executor:
      futures = []
      for fname in files:
-         futures.append(executor.submit(channelizer, fname = fname))
+         futures.append(executor.submit(channelizer, file = fname))
      for future in concurrent.futures.as_completed(futures):
                    newimage, name = future.result()
                    imwrite(outputdir + '/' + os.path.splitext(name)[0] + '.tiff', newimage)
