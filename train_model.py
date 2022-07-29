@@ -61,8 +61,8 @@ generate_npz = True
 train_unet = True
 train_star = True
 train_seed_unet = True
-axes = 'YX'
-axis_norm = (0,1,2)
+axes = 'YXC'
+axis_norm = (0,1)
 
 
 SmartSeeds2D(base_dir = base_dir, 
