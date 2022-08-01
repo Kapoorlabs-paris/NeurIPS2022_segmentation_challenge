@@ -5,6 +5,7 @@ import hydra
 from hydra.core.config_store import ConfigStore
 
 configstore = ConfigStore.instance()
+configstore.store(name = 'neurips_config', node = NeurIPSConfig)
 
 @hydra.main(config_path="conf", config_name='config')
 def main(cfg : NeurIPSConfig):
