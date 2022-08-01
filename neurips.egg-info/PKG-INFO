@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: neurips
+Version: 1.0.0
+Summary: Kapoorlabs submission to the segmentation challenge.
+Home-page: https://github.com/Kapoorlabs-paris/NeurIPS2022_segmentation_challenge/
+Author: Varun Kapoor
+Author-email: varun.kapoor@kapoorlabs.org
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
+
+# NeurIPS2022_segmentation_challenge
+Our solution for the cell segmentation challenge of NeurIPS 2022 challenge
+
+

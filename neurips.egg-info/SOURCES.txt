@@ -1,0 +1,14 @@
+README.md
+setup.py
+neurips/__init__.py
+neurips/_version.py
+neurips/channelizer.py
+neurips/name_replacer.py
+neurips/png_tif_convert.py
+neurips/train_model.py
+neurips/train_model_jz.py
+neurips.egg-info/PKG-INFO
+neurips.egg-info/SOURCES.txt
+neurips.egg-info/dependency_links.txt
+neurips.egg-info/requires.txt
+neurips.egg-info/top_level.txt
