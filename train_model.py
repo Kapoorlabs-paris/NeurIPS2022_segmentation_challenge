@@ -9,22 +9,22 @@ base_dir = '/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegDa
 model_dir = '/gpfsstore/rech/jsy/uzj81mi/Segmentation_Models/'
 
 parser = argparse.ArgumentParser(description='Multiple trainings.')
-parser.add_argument('--generate_npz', help='generate_npz', action='store_true')
-parser.add_argument('--npz_filename', type = str, default = 'Kapoorlabs_NeuroIPS_p128', help='npz_filename')
-parser.add_argument('--model_name', type = str, default = 'Kapoorlabs_NeuroIPS_p128_d3_f32_r64', help='model_name')
-parser.add_argument('--epoch', help='e', type= int, default=200)
-parser.add_argument('--depth', help='d', type= int, default=3)
-parser.add_argument('--batch_size', help='b', type= int, default=10)
-parser.add_argument('--learning_rate', help='lr', type = float, default = 1.0E-4)
-parser.add_argument('--patch_x', help='px', type= int, default=128)
-parser.add_argument('--patch_y', help='py', type= int, default=128)
-parser.add_argument('--kern_size', help='ks', type= int, default=3)
-parser.add_argument('--n_patches_per_image', help='npi', type= int, default=32)
-parser.add_argument('--n_rays', help='nr', type= int, default=64)
-parser.add_argument('--startfilter', help='sf', type= int, default=32)
-parser.add_argument('--validation_split', help='vs', type = float, default = 0.0001)
-parser.add_argument('--n_channel_in', help='nin', type= int, default=3)
-parser.add_argument('--pattern', type = str, default = '.tiff', help='.tiff')
+parser.add_argument( '-g','--generate_npz', help='generate npz files if not already there', action='store_true')
+parser.add_argument( '-npz','--npz_filename', type = str, default = 'Kapoorlabs_NeuroIPS_p128', help='name of the npz file to put')
+parser.add_argument( '-m', '--model_name', type = str, default = 'Kapoorlabs_NeuroIPS_p128_d3_f32_r64', help='name of the model to put')
+parser.add_argument( '-e', '--epoch', help='number of epochs to train the models for', type= int, default=200)
+parser.add_argument( '-d', '--depth', help='depth of the network', type= int, default=3)
+parser.add_argument( '-b', '--batch_size', help='batch_size', type= int, default=10)
+parser.add_argument( '-lr', '--learning_rate', help='learning_rate', type = float, default = 1.0E-4)
+parser.add_argument( '-px', '--patch_x', help='patch size in x for training', type= int, default=128)
+parser.add_argument( '-py', '--patch_y', help='patch size in y for training', type= int, default=128)
+parser.add_argument( '-k', '--kern_size', help='kernel_size', type= int, default=3)
+parser.add_argument( '-npi', '--n_patches_per_image', help='number of patches gnerated per image for training', type= int, default=32)
+parser.add_argument( '-nr', '--n_rays', help='number of rays for stardist model', type= int, default=64)
+parser.add_argument( '-s', '--startfilter', help='start number of convolutional filters for the model', type= int, default=32)
+parser.add_argument( '-v', '--validation_split', help='split fraction between the traiing and validation dataset', type = float, default = 0.0001)
+parser.add_argument( '-nin', '--n_channel_in', help='number of input channels', type= int, default=3)
+parser.add_argument( '-p', '--pattern', type = str, default = '.tiff', help='The input file extension')
 
 args = parser.parse_args()
 
@@ -38,7 +38,7 @@ binary_mask_dir = 'binary_mask/'
 binary_erode_mask_dir = 'binary_erode_mask/'
 
 
-print('Flags', args)
+
 #Network training parameters
 depth = args.depth
 epochs = args.epoch
