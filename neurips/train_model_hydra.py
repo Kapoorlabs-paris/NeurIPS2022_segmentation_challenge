@@ -9,23 +9,14 @@ configstore = ConfigStore.instance()
 @hydra.main(config_path="conf", config_name='config')
 def main(cfg : NeurIPSConfig):
 
-            base_dir = '/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/'
-            model_dir = '/gpfsstore/rech/jsy/uzj81mi/Segmentation_Models/'
-
-
-
-            
+            base_dir = cfg.paths.base_dir
+            model_dir = cfg.paths.model_dir
             npz_filename = cfg.files.npz_filename
-
             model_name = cfg.files.model_name
-
             raw_dir = cfg.paths.raw_dir
             real_mask_dir = cfg.paths.real_mask_dir 
             binary_mask_dir = cfg.paths.binary_mask_dir
             binary_erode_mask_dir = cfg.paths.binary_erode_mask_dir
-
-
-
             #Network training parameters
             depth = cfg.params.depth
             epochs = cfg.params.epoch
@@ -40,15 +31,13 @@ def main(cfg : NeurIPSConfig):
             validation_split = cfg.params.validation_split
             n_channel_in = cfg.params.n_channel_in
             pattern = cfg.params.pattern
-
-
             use_gpu_opencl = True
             load_data_sequence = False
             generate_npz = False
             train_unet = True
             train_star = True
             train_seed_unet = True
-
+            RGB = True
 
             SmartSeeds2D(base_dir = base_dir, 
                         npz_filename = npz_filename, 
@@ -74,7 +63,7 @@ def main(cfg : NeurIPSConfig):
                         pattern = pattern,
                         kern_size = kern_size, 
                         startfilter = startfilter, 
-                        RGB = True,
+                        RGB = RGB,
                         n_rays = n_rays, 
                         epochs = epochs, 
                         learning_rate = learning_rate)
