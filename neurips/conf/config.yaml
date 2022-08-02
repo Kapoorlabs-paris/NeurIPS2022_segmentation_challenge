@@ -26,7 +26,7 @@ files:
 paths:
   model_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_Models/'
   base_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/'
-  raw_dir : 'raw/'
-  real_mask_dir : 'real_mask/' 
-  binary_mask_dir : 'binary_mask/'
-  binary_erode_mask_dir : 'binary_erode_mask/'
+  raw_dir : 'raw_resized_256/'
+  real_mask_dir : 'real_mask_resized_256/' 
+  binary_mask_dir : 'binary_mask_resized_256/'
+  binary_erode_mask_dir : 'binary_erode_mask_resized_256/'
