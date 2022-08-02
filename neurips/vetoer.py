@@ -28,7 +28,7 @@ for i in range(len(inputdirs)):
                 files = list(inputdir.glob(pattern))
                 def vetoer(file):
                     image = imread(file)
-                    if image.shape[0] >= minsize[0] or image.shape[1] >= minsize[1]:
+                    if image.shape[0] >= minsize[0] and image.shape[1] >= minsize[1]:
                         newimage = image             
                         return newimage, file.name
                     else:
