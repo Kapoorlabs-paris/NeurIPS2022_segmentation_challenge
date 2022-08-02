@@ -1,7 +1,7 @@
 import os
 import glob
 from tifffile import imread, imwrite
-from vollseg import Augmentation2D
+from vollseg import Augmentation2DC
 from pathlib import Path
 import numpy as np
 from scipy.ndimage import gaussian_filter
@@ -49,7 +49,7 @@ for fname in filesRaw:
 Data = np.asarray(Data)
 Label = np.asarray(Label)
 
-rotate_pixels = Augmentation2D(rotate_axis = rotate_axis, rotate_angle = rotate_angle)
+rotate_pixels = Augmentation2DC(rotate_axis = rotate_axis, rotate_angle = rotate_angle)
 aug_rotate_pixels = rotate_pixels.build(data=Data, label=Label, batch_size = Data.shape[0])
 aug_rotate_pixels_pair = np.asarray(next(aug_rotate_pixels))
 count = 0
@@ -59,7 +59,7 @@ for i in range(0, aug_rotate_pixels_pair.shape[1]):
      imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_rotate_pixels_pair[1,i,:,:].astype('uint16'))
      count = count + 1   
 
-flip_pixels = Augmentation2D(flip_axis = flip_axis)
+flip_pixels = Augmentation2DC(flip_axis = flip_axis)
 aug_flip_pixels = flip_pixels.build(data=Data, label=Label, batch_size = Data.shape[0])
 aug_flip_pixels_pair = np.asarray(next(aug_flip_pixels))
 count = 0
@@ -69,7 +69,7 @@ for i in range(0, aug_flip_pixels_pair.shape[1]):
      imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_flip_pixels_pair[1,i,:,:].astype('uint16'))
      count = count + 1        
 
-zoom_pixels = Augmentation2D(zoom_axis = zoom_axis, zoom_range = zoom_range)
+zoom_pixels = Augmentation2DC(zoom_axis = zoom_axis, zoom_range = zoom_range)
 aug_zoom_pixels = zoom_pixels.build(data=Data, label=Label, batch_size = Data.shape[0])
 aug_zoom_pixels_pair = np.asarray(next(aug_zoom_pixels))
 count = 0
@@ -79,7 +79,7 @@ for i in range(0, aug_zoom_pixels_pair.shape[1]):
      imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_zoom_pixels_pair[1,i,:,:].astype('uint16'))
      count = count + 1   
 
-shift_pixels = Augmentation2D(shift_axis = shift_axis, shift_range = shift_range)
+shift_pixels = Augmentation2DC(shift_axis = shift_axis, shift_range = shift_range)
 aug_shift_pixels = shift_pixels.build(data=Data, label=Label, batch_size = Data.shape[0])
 aug_shift_pixels_pair = np.asarray(next(aug_shift_pixels))
 count = 0
