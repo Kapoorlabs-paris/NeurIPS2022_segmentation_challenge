@@ -50,7 +50,7 @@ for fname in filesRaw:
                 Label = np.asarray(Label)
 
                 rotate_pixels = Augmentation2DC(rotate_axis = rotate_axis, rotate_angle = rotate_angle)
-                aug_rotate_pixels = rotate_pixels.build(data=Data, label=Label, batch_size = Data.shape[0])
+                aug_rotate_pixels = rotate_pixels.build(data=Data, label=Label)
                 aug_rotate_pixels_pair = np.asarray(next(aug_rotate_pixels))
                 count = 0
                 for i in range(0, aug_rotate_pixels_pair.shape[1]):
@@ -60,7 +60,7 @@ for fname in filesRaw:
                     count = count + 1   
 
                 flip_pixels = Augmentation2DC(flip_axis = flip_axis)
-                aug_flip_pixels = flip_pixels.build(data=Data, label=Label, batch_size = Data.shape[0])
+                aug_flip_pixels = flip_pixels.build(data=Data, label=Label)
                 aug_flip_pixels_pair = np.asarray(next(aug_flip_pixels))
                 count = 0
                 for i in range(0, aug_flip_pixels_pair.shape[1]):
@@ -70,7 +70,7 @@ for fname in filesRaw:
                     count = count + 1        
 
                 zoom_pixels = Augmentation2DC(zoom_axis = zoom_axis, zoom_range = zoom_range)
-                aug_zoom_pixels = zoom_pixels.build(data=Data, label=Label, batch_size = Data.shape[0])
+                aug_zoom_pixels = zoom_pixels.build(data=Data, label=Label)
                 aug_zoom_pixels_pair = np.asarray(next(aug_zoom_pixels))
                 count = 0
                 for i in range(0, aug_zoom_pixels_pair.shape[1]):
@@ -80,7 +80,7 @@ for fname in filesRaw:
                     count = count + 1   
 
                 shift_pixels = Augmentation2DC(shift_axis = shift_axis, shift_range = shift_range)
-                aug_shift_pixels = shift_pixels.build(data=Data, label=Label, batch_size = Data.shape[0])
+                aug_shift_pixels = shift_pixels.build(data=Data, label=Label)
                 aug_shift_pixels_pair = np.asarray(next(aug_shift_pixels))
                 count = 0
                 for i in range(0, aug_shift_pixels_pair.shape[1]):
