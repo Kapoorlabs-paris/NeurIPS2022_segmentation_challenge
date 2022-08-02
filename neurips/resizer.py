@@ -19,14 +19,14 @@ def resizer(file):
     
     if image.shape[0] < minsize[0] or image.shape[1] < minsize[1]:
           if ndims == 3:
-            shape = (max(256, image.shape[1]),max(256,image.shape[0]),3)
+            shape = (max(256, image.shape[0]),max(256,image.shape[1]),3)
             newimage = np.zeros(shape)
             for i in range(0, image.shape[2]):
-                newimage[:,:,i] = cv2.resize(image[:,:,i].astype('float32'), (shape[0], shape[1])) 
+                newimage[:,:,i] = cv2.resize(image[:,:,i].astype('float32'), (shape[1], shape[0])) 
 
           else:
             shape = (max(256, image.shape[1]),max(256,image.shape[0]))  
-            newimage = cv2.resize(image.astype('float32'), shape)
+            newimage = cv2.resize(image.astype('float32'), (shape[1], shape[0]))
           
     else:
         newimage = image             
