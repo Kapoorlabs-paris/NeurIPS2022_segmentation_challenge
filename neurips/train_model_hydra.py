@@ -68,3 +68,6 @@ def main(cfg : NeurIPSConfig):
                         n_rays = n_rays, 
                         epochs = epochs, 
                         learning_rate = learning_rate)
+
+if __name__ == '__main__':
+    main()                        
