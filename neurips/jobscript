@@ -20,4 +20,4 @@ set -x # activating echo of
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/linkhome/rech/gengoq01/uzj81mi/.conda/envs/genie/lib/
 echo $LD_LIBRARY_PATH
 
-python -u train_model_jz.py --generate_npz --validation_split 0.01
+python -u train_model_hydra.py

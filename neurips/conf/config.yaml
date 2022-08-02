@@ -1,8 +1,8 @@
 params:
     epoch: 200
     learning_rate: 1.0E-3
-    patch_x: 512
-    patch_y: 512
+    patch_x: 256
+    patch_y: 256
     kern_size: 3
     n_patches_per_image: 32
     n_rays: 64
@@ -14,8 +14,8 @@ params:
     batch_size: 10
 
 files:
-  npz_filename : 'Kapoorlabs_NeuroIPS_p128'
-  model_name : 'Kapoorlabs_NeuroIPS_p128_d3_f32_r64'
+  npz_filename : 'Kapoorlabs_NeuroIPS_p256'
+  model_name : 'Kapoorlabs_NeuroIPS_p256_d3_f32_r64'
 paths:
   model_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_Models/'
   base_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/'
