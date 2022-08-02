@@ -22,7 +22,7 @@ def resizer(file):
             shape = (max(256, image.shape[0]),max(256,image.shape[1]),3)
             newimage = np.zeros(shape)
             for i in range(0, image.shape[2]):
-                newimage[:,:,i] = cv2.resize(image[:,:,i].astype('float32'), shape) 
+                newimage[:,:,i] = cv2.resize(image[:,:,i].astype('float32'), (shape[0], shape[1])) 
 
           else:
             shape = (max(256, image.shape[0]),max(256,image.shape[1]))  
