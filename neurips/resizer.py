@@ -10,18 +10,26 @@ outputdir = "/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegD
 Path(outputdir).mkdir(exist_ok=True)
 pattern = '*.tiff'
 minsize = (256,256)
-shape = (256,256,3)
+
 files = list(inputdir.glob(pattern))
 nthreads = os.cpu_count()
 def resizer(file):
     image = imread(file)
-    newimage = np.zeros(shape)
-    print(image.shape, newimage.shape)
-    if image.shape[0] < minsize[0] and image.shape[1] < minsize[1]:
-          print('in')
-          for i in range(0, image.shape[2]):
-             newimage[:,:,i] =cv2.resize(
-                image[:,:,i].astype('float32'), minsize)
+    ndims = len(image.shape)
+    
+    if image.shape[0] < minsize[0] or image.shape[1] < minsize[1]:
+          if ndims == 3:
+            shape = (max(256, image.shape[0]),max(256,image.shape[1]),3)
+            newimage = np.zeros(shape)
+            for i in range(0, image.shape[2]):
+                newimage[:,:,i] = cv2.resize(image[:,:,i].astype('float32'), shape) 
+
+          else:
+            shape = (max(256, image.shape[0]),max(256,image.shape[1]))  
+            newimage = cv2.resize(image.astype('float32'), shape)
+          
+    else:
+        newimage = image             
     return newimage, file.name
 with concurrent.futures.ThreadPoolExecutor(max_workers = nthreads) as executor:
      futures = []
@@ -30,4 +38,3 @@ with concurrent.futures.ThreadPoolExecutor(max_workers = nthreads) as executor:
      for future in concurrent.futures.as_completed(futures):
                    newimage, name = future.result()
                    imwrite(outputdir + '/' + os.path.splitext(name)[0] + '.tiff', newimage)
-~               
