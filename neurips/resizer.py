@@ -6,7 +6,7 @@ import numpy as np
 import cv2
 
 inputdir = Path("/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw/")
-outputdir = "/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw/"
+outputdir = "/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw_resized/"
 Path(outputdir).mkdir(exist_ok=True)
 pattern = '*.tiff'
 minsize = (256,256,3)
