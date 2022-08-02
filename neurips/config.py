@@ -32,6 +32,13 @@ class Params:
     pattern: str
     depth: int 
     batch_size: int    
+    use_gpu_opencl: bool 
+    load_data_sequence: bool
+    generate_npz: bool
+    train_unet: bool
+    train_star: bool 
+    train_seed_unet: bool
+    RGB: bool
 
 @dataclass
 class NeurIPSConfig:

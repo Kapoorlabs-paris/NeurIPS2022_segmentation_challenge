@@ -12,6 +12,13 @@ params:
     pattern: '.tiff'
     depth: 3
     batch_size: 10
+    use_gpu_opencl: False
+    load_data_sequence: False
+    generate_npz: True
+    train_unet: True
+    train_star: True
+    train_seed_unet: True
+    RGB: True
 
 files:
   npz_filename : 'Kapoorlabs_NeuroIPS_p256'
