@@ -26,7 +26,7 @@ shift_range= 0.2
 zoom_range= 2
 rotate_axis= 1
 rotate_angle= 'random'
-pattern = '*.tifff'
+pattern = '*.tiff'
 
 filesRaw = list(image_dir.glob(pattern))
 filesLabel = list(label_dir.glob(pattern))
@@ -46,6 +46,9 @@ for fname in filesRaw:
                 labelimage = gaussian_filter(imread(secondfname), gauss_filter_size)
                 Data.append(image)
                 Label.append(labelimage)
+                Data = np.asarray(Data)
+                Label = np.asarray(Label)
+
                 rotate_pixels = Augmentation2DC(rotate_axis = rotate_axis, rotate_angle = rotate_angle)
                 aug_rotate_pixels = rotate_pixels.build(data=Data, label=Label, batch_size = Data.shape[0])
                 aug_rotate_pixels_pair = np.asarray(next(aug_rotate_pixels))
