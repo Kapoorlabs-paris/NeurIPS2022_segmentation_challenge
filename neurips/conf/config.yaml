@@ -1,8 +1,8 @@
 params:
     epoch: 200
     learning_rate: 1.0E-3
-    patch_x: 128
-    patch_y: 128
+    patch_x: 512
+    patch_y: 512
     kern_size: 3
     n_patches_per_image: 32
     n_rays: 64
