@@ -26,7 +26,7 @@ shift_range= 0.2
 zoom_range= 2
 rotate_axis= 1
 rotate_angle= 'random'
-pattern = '*.tiff'
+pattern = '*.tifff'
 
 filesRaw = list(image_dir.glob(pattern))
 filesLabel = list(label_dir.glob(pattern))
@@ -55,8 +55,8 @@ aug_rotate_pixels_pair = np.asarray(next(aug_rotate_pixels))
 count = 0
 for i in range(0, aug_rotate_pixels_pair.shape[1]):
      Name = 'rotate_pixels' + str(count)
-     imwrite(Aug_image_dir + '/' + Name + '.tif', aug_rotate_pixels_pair[0,i,:,:].astype('float32'))
-     imwrite(Aug_label_dir + '/' + Name + '.tif', aug_rotate_pixels_pair[1,i,:,:].astype('uint16'))
+     imwrite(Aug_image_dir + '/' + Name + '.tiff', aug_rotate_pixels_pair[0,i,:,:].astype('float32'))
+     imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_rotate_pixels_pair[1,i,:,:].astype('uint16'))
      count = count + 1   
 
 flip_pixels = Augmentation2D(flip_axis = flip_axis)
@@ -65,8 +65,8 @@ aug_flip_pixels_pair = np.asarray(next(aug_flip_pixels))
 count = 0
 for i in range(0, aug_flip_pixels_pair.shape[1]):
      Name = 'aug_flip_pixels' + str(count)
-     imwrite(Aug_image_dir + '/' + Name + '.tif', aug_flip_pixels_pair[0,i,:,:].astype('float32'))
-     imwrite(Aug_label_dir + '/' + Name + '.tif', aug_flip_pixels_pair[1,i,:,:].astype('uint16'))
+     imwrite(Aug_image_dir + '/' + Name + '.tiff', aug_flip_pixels_pair[0,i,:,:].astype('float32'))
+     imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_flip_pixels_pair[1,i,:,:].astype('uint16'))
      count = count + 1        
 
 zoom_pixels = Augmentation2D(zoom_axis = zoom_axis, zoom_range = zoom_range)
@@ -75,8 +75,8 @@ aug_zoom_pixels_pair = np.asarray(next(aug_zoom_pixels))
 count = 0
 for i in range(0, aug_zoom_pixels_pair.shape[1]):
      Name = 'aug_zoom_pixels' + str(count)
-     imwrite(Aug_image_dir + '/' + Name + '.tif', aug_zoom_pixels_pair[0,i,:,:].astype('float32'))
-     imwrite(Aug_label_dir + '/' + Name + '.tif', aug_zoom_pixels_pair[1,i,:,:].astype('uint16'))
+     imwrite(Aug_image_dir + '/' + Name + '.tiff', aug_zoom_pixels_pair[0,i,:,:].astype('float32'))
+     imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_zoom_pixels_pair[1,i,:,:].astype('uint16'))
      count = count + 1   
 
 shift_pixels = Augmentation2D(shift_axis = shift_axis, shift_range = shift_range)
@@ -85,6 +85,6 @@ aug_shift_pixels_pair = np.asarray(next(aug_shift_pixels))
 count = 0
 for i in range(0, aug_shift_pixels_pair.shape[1]):
      Name = 'aug_shift_pixels' + str(count)
-     imwrite(Aug_image_dir + '/' + Name + '.tif', aug_shift_pixels_pair[0,i,:,:].astype('float32'))
-     imwrite(Aug_label_dir + '/' + Name + '.tif', aug_shift_pixels_pair[1,i,:,:].astype('uint16'))
+     imwrite(Aug_image_dir + '/' + Name + '.tiff', aug_shift_pixels_pair[0,i,:,:].astype('float32'))
+     imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_shift_pixels_pair[1,i,:,:].astype('uint16'))
      count = count + 1           
