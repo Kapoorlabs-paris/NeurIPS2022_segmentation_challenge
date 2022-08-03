@@ -26,6 +26,7 @@ class SmartPatch2D(object):
             self.lower_ratio_fore_to_back = lower_ratio_fore_to_back
             self.upper_ratio_fore_to_back = upper_ratio_fore_to_back
             
+            self.create_smart_patches()
 
 
     def create_smart_patches():        
@@ -88,32 +89,10 @@ class SmartPatch2D(object):
 
                self.valid = True
          
-def fill_label_holes(lbl_img, **kwargs):
-    """Fill small holes in label image."""
-    # TODO: refactor 'fill_label_holes' and 'edt_prob' to share code
-    def grow(sl,interior):
-        return tuple(slice(s.start-int(w[0]),s.stop+int(w[1])) for s,w in zip(sl,interior))
-    def shrink(interior):
-        return tuple(slice(int(w[0]),(-1 if w[1] else None)) for w in interior)
-    objects = find_objects(lbl_img)
-    lbl_img_filled = np.zeros_like(lbl_img)
-    for i,sl in enumerate(objects,1):
-        if sl is None: continue
-        interior = [(s.start>0,s.stop<sz) for s,sz in zip(sl,lbl_img.shape)]
-        shrink_slice = shrink(interior)
-        grown_mask = lbl_img[grow(sl,interior)]==i
-        mask_filled = binary_fill_holes(grown_mask,**kwargs)[shrink_slice]
-        lbl_img_filled[sl][mask_filled] = i
-    return lbl_img_filled
 
 
-def dilate_label_holes(lbl_img, iterations):
-    lbl_img_filled = np.zeros_like(lbl_img)
-    for l in (range(np.min(lbl_img), np.max(lbl_img) + 1)):
-        mask = lbl_img==l
-        mask_filled = binary_dilation(mask,iterations = iterations)
-        lbl_img_filled[mask_filled] = l
-    return lbl_img_filled    
+
+ 
 
 def erode_label_holes(lbl_img, iterations):
     lbl_img_filled = np.zeros_like(lbl_img)
