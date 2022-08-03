@@ -4,7 +4,6 @@ params:
     patch_x: 256
     patch_y: 256
     kern_size: 3
-    n_patches_per_image: 32
     n_rays: 64
     startfilter: 32
     validation_split: 0.0001
@@ -14,19 +13,13 @@ params:
     batch_size: 10
     use_gpu_opencl: False
     load_data_sequence: False
-    generate_npz: True
-    train_unet: True
     train_star: True
-    train_seed_unet: True
     RGB: True
 
 files:
-  npz_filename : 'Kapoorlabs_NeuroIPS_p256'
   model_name : 'Kapoorlabs_NeuroIPS_p256_d3_f32_r64'
 paths:
   model_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_Models/'
   base_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/'
   raw_dir : 'raw_resized_256/'
   real_mask_dir : 'real_mask_resized_256/' 
-  binary_mask_dir : 'binary_mask_resized_256/'
-  binary_erode_mask_dir : 'binary_erode_mask_resized_256/'

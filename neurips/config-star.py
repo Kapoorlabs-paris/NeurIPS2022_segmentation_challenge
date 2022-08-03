@@ -6,15 +6,11 @@ class Paths:
   base_dir : str
   raw_dir : str
   real_mask_dir : str 
-  binary_mask_dir : str
-  binary_erode_mask_dir : str
+
 
 @dataclass
 class Files:
-
-  npz_filename : str
   model_name : str
-
 
 @dataclass
 class Params:
@@ -24,7 +20,6 @@ class Params:
     patch_x: int 
     patch_y: int 
     kern_size: int 
-    n_patches_per_image: int 
     n_rays: int 
     startfilter: int 
     validation_split: float 
@@ -34,14 +29,10 @@ class Params:
     batch_size: int    
     use_gpu_opencl: bool 
     load_data_sequence: bool
-    generate_npz: bool
-    train_unet: bool
-    train_star: bool 
-    train_seed_unet: bool
     RGB: bool
 
 @dataclass
-class NeurIPSConfig:
+class NeurIPSStarConfig:
 
      paths: Paths
      files : Files
