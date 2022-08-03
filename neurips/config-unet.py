@@ -35,6 +35,7 @@ class Params:
     train_unet: bool
     train_seed_unet: bool
     RGB: bool
+    num_channels: int
 
 @dataclass
 class NeurIPSUnetConfig:

@@ -1,6 +1,7 @@
 
 from vollseg import SmartSeeds2D
 from config-unet import NeurIPSUnetConfig
+
 import hydra
 from hydra.core.config_store import ConfigStore
 
@@ -15,6 +16,7 @@ def main(config : NeurIPSUnetConfig):
             npz_filename = config.files.npz_filename
             model_name = config.files.model_name
             raw_dir = config.paths.raw_dir
+            raw_save_dir = config.paths.raw_save_dir
             real_mask_dir = config.paths.real_mask_dir 
             binary_mask_dir = config.paths.binary_mask_dir
             binary_erode_mask_dir = config.paths.binary_erode_mask_dir
@@ -35,6 +37,12 @@ def main(config : NeurIPSUnetConfig):
             train_unet = config.params.train_unet
             train_seed_unet = config.params.train_seed_unet
             RGB = config.params.RGB
+            num_channels = config.params.num_channels
+
+            SmartPatch2D(base_dir, npz_filename, (patch_y, patch_x), num_channels,  raw_dir = raw_dir, raw_save_dir = raw_save_dir,
+     real_mask_dir = real_mask_dir, binary_mask_dir = binary_mask_dir, binary_erode_mask_dir = binary_erode_mask_dir,  pattern = pattern)
+           
+            
 
             SmartSeeds2D(base_dir = base_dir, 
                         npz_filename = npz_filename, 

@@ -9,7 +9,7 @@ class SmartPatch2D(object):
     def __init__(self, base_dir, npz_filename, patch_size, num_channels,  raw_dir = '/Raw/',
      raw_save_dir = '/raw_patches/', erosion_iterations = 2,
      real_mask_dir = '/real_mask/', binary_mask_dir = '/binary_patches_mask/',
-     binary_erode_mask_dir = '/binary_patches_erode_mask/',  search_pattern = '.tif', lower_ratio_fore_to_back = 0.3,
+     binary_erode_mask_dir = '/binary_patches_erode_mask/',  pattern = '.tif', lower_ratio_fore_to_back = 0.3,
      upper_ratio_fore_to_back = 0.9 ):
 
             self.base_dir = base_dir
@@ -22,7 +22,8 @@ class SmartPatch2D(object):
             self.real_mask_dir = real_mask_dir
             self.binary_mask_dir = binary_mask_dir
             self.binary_erode_mask_dir = binary_erode_mask_dir
-            self.search_pattern = search_pattern
+            self.pattern = pattern
+            self.search_pattern = '*' + self.pattern
             self.lower_ratio_fore_to_back = lower_ratio_fore_to_back
             self.upper_ratio_fore_to_back = upper_ratio_fore_to_back
             
@@ -62,19 +63,19 @@ class SmartPatch2D(object):
                       if self.valid:
                          
                          binary_image = self.crop_labelimage > 0   
-                         imwrite(self.base_dir + self.binary_mask_dir + '/' + os.path.splitext(fname.name)[0] + count + self.search_pattern, binary_image)
+                         imwrite(self.base_dir + self.binary_mask_dir + '/' + os.path.splitext(fname.name)[0] + count + self.pattern, binary_image)
 
                          if self.erosion_iterations > 0:
                                eroded_crop_labelimage = erode_labels(self.crop_labelimage.astype('uint16'), self.erosion_iterations)
                          eroded_binary_image = eroded_crop_labelimage > 0   
-                         imwrite(self.base_dir + self.binary_erode_mask_dir + '/' + os.path.splitext(fname.name)[0] + count + self.search_pattern, eroded_binary_image)
+                         imwrite(self.base_dir + self.binary_erode_mask_dir + '/' + os.path.splitext(fname.name)[0] + count + self.pattern, eroded_binary_image)
 
 
                          region =(slice(int(crop_Yminus), int(crop_Yplus)),
                                                                 slice(int(crop_Xminus), int(crop_Xplus)), slice(0, self.num_channels))
                          self.raw_image = imread(Path(self.base_dir + self.raw_dir + name + self.search_pattern ))[region]
                          
-                         imwrite(self.base_dir + self.raw_save_dir + '/' + os.path.splitext(fname.name)[0] + count + self.search_pattern, self.raw_image)
+                         imwrite(self.base_dir + self.raw_save_dir + '/' + os.path.splitext(fname.name)[0] + count + self.pattern, self.raw_image)
                          
 
     def region_selector(self):

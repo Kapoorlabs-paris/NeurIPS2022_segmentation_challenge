@@ -15,13 +15,15 @@ params:
     train_unet: True
     train_seed_unet: True
     RGB: True
+    num_channels: 3
 files:
   npz_filename : 'Kapoorlabs_NeuroIPS_p256'
   model_name : 'Kapoorlabs_NeuroIPS_p256_d3_f32_r64'
 paths:
   model_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_Models/'
   base_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/'
-  raw_dir : 'raw_resized_256/'
-  real_mask_dir : 'real_mask_resized_256/' 
-  binary_mask_dir : 'binary_mask_resized_256/'
-  binary_erode_mask_dir : 'binary_erode_mask_resized_256/'
+  raw_dir : 'raw/'
+  raw_save_dir : 'raw_patches/' 
+  real_mask_dir : 'real_mask/' 
+  binary_mask_dir : 'binary_patches_mask/'
+  binary_erode_mask_dir : 'binary_patches_erode_mask/'
