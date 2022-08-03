@@ -15,7 +15,6 @@ params:
     train_unet: True
     train_seed_unet: True
     RGB: True
-
 files:
   npz_filename : 'Kapoorlabs_NeuroIPS_p256'
   model_name : 'Kapoorlabs_NeuroIPS_p256_d3_f32_r64'
