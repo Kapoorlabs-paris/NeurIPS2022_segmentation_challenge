@@ -7,7 +7,7 @@ from hydra.core.config_store import ConfigStore
 configstore = ConfigStore.instance()
 configstore.store(name = 'neuripsstar_config', node = NeurIPSStarConfig)
 
-@hydra.main(config_path="conf", config_name='config-star')
+@hydra.main(config_path="conf", config_name='config_star')
 def main(config : NeurIPSStarConfig):
 
             base_dir = config.paths.base_dir
