@@ -90,11 +90,11 @@ class SmartPatch2D(object):
 
     def region_selector(self):
     
-        zero_indices = np.where(self.crop_labelimage == 0)
+        zero_indices = zip(*np.where(self.crop_labelimage == 0))
         self.valid = False
-        non_zero_indices = np.where(self.crop_labelimage > 0)
+        non_zero_indices = zip(*np.where(self.crop_labelimage > 0))
         if (len(zero_indices) > 0):
-           index_ratio = len(non_zero_indices)/len(zero_indices) 
+           index_ratio = float(len(non_zero_indices))/float(len(zero_indices)) 
 
            if index_ratio >= self.lower_ratio_fore_to_back  and index_ratio <= self.upper_ratio_fore_to_back:
 
