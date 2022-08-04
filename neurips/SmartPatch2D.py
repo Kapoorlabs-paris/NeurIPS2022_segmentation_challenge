@@ -35,8 +35,13 @@ class SmartPatch2D(object):
 
     def create_smart_patches(self):        
 
-          Raw_path = Path(self.base_dir + self.raw_dir)
-          Raw = list(Raw_path.glob(self.search_pattern))
+          
+         
+          Path(self.raw_save_dir).mkdir(exist_ok = True)
+          Path(self.real_mask_patch_dir).mkdir(exist_ok = True)
+          Path(self.binary_mask_dir).mkdir(exist_ok = True)
+          Path(self.binary_erode_mask_dir).mkdir(exist_ok = True) 
+
 
           Real_Mask_path = Path(self.base_dir + self.real_mask_dir)
           RealMask = list(Real_Mask_path.glob(self.search_pattern))
