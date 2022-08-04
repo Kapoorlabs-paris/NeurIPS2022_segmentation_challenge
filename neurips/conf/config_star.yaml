@@ -24,6 +24,4 @@ paths:
   raw_dir : 'raw_patches/'
   real_mask_dir : 'real_patch_mask/' 
   binary_mask_dir : 'binary_patch_mask/'
-  binary_erode_mask_dir : 'binary_patch_erode_mask/
-
-  
+  binary_erode_mask_dir : 'binary_patch_erode_mask/'  
