@@ -2,7 +2,7 @@ params:
   
     patch_x: 256
     patch_y: 256
-    n_channel: 3
+    num_channels: 3
     pattern: '.tiff'
 
 paths:
