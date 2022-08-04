@@ -83,7 +83,7 @@ class SmartPatch2D(object):
 
                          region =(slice(int(crop_Yminus), int(crop_Yplus)),
                                                                 slice(int(crop_Xminus), int(crop_Xplus)), slice(0, self.num_channels))
-                         self.raw_image = imread(Path(self.base_dir + self.raw_dir + name + self.search_pattern ))[region]
+                         self.raw_image = imread(Path(self.base_dir + self.raw_dir + name + self.pattern ))[region]
                          
                          imwrite(self.base_dir + self.raw_save_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, self.raw_image)
                          
