@@ -16,7 +16,6 @@ def main(config : NeurIPSUnetConfig):
             npz_filename = config.files.npz_filename
             model_name = config.files.model_name
             raw_dir = config.paths.raw_dir
-            real_mask_dir = config.paths.real_mask_dir 
             binary_mask_dir = config.paths.binary_mask_dir
             binary_erode_mask_dir = config.paths.binary_erode_mask_dir
             #Network training parameters
@@ -32,8 +31,6 @@ def main(config : NeurIPSUnetConfig):
             n_channel_in = config.params.n_channel_in
             pattern = config.params.pattern
             generate_npz = config.params.generate_npz
-            train_unet = config.params.train_unet
-            train_seed_unet = config.params.train_seed_unet
             RGB = config.params.RGB
 
             
