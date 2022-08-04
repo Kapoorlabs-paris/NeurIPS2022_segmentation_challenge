@@ -16,6 +16,7 @@ def main(config : NeurIPSUnetConfig):
             npz_filename = config.files.npz_filename
             model_name = config.files.model_name
             raw_dir = config.paths.raw_dir
+            real_mask_dir = config.paths.real_mask_dir
             binary_mask_dir = config.paths.binary_mask_dir
             binary_erode_mask_dir = config.paths.binary_erode_mask_dir
             #Network training parameters
@@ -41,6 +42,7 @@ def main(config : NeurIPSUnetConfig):
                         model_name = model_name, 
                         model_dir = model_dir,
                         raw_dir = raw_dir,
+                        real_mask_dir = real_mask_dir,
                         binary_mask_dir = binary_mask_dir,
                         binary_erode_mask_dir = binary_erode_mask_dir,
                         n_channel_in = n_channel_in,

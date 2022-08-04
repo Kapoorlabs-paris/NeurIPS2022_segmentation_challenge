@@ -15,7 +15,8 @@ def main(config : NeurIPSStarConfig):
             model_name = config.files.model_name
             raw_dir = config.paths.raw_dir
             real_mask_dir = config.paths.real_mask_dir 
-           
+            binary_mask_dir = config.paths.binary_mask_dir
+            binary_erode_mask_dir = config.paths.binary_erode_mask_dir
             #Network training parameters
             depth = config.params.depth
             epochs = config.params.epoch
@@ -39,6 +40,8 @@ def main(config : NeurIPSStarConfig):
                         model_dir = model_dir,
                         raw_dir = raw_dir,
                         real_mask_dir = real_mask_dir,
+                        binary_mask_dir = binary_mask_dir,
+                        binary_erode_mask_dir = binary_erode_mask_dir,
                         n_channel_in = n_channel_in,
                         load_data_sequence = load_data_sequence, 
                         validation_split = validation_split, 
