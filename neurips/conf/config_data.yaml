@@ -10,6 +10,6 @@ paths:
   base_dir : '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/'
   raw_dir : 'raw/'
   raw_save_dir : 'raw_patches/'
-  real_mask_dir : 'real_patch_mask/'
+  real_mask_dir : 'real_mask/'
   binary_mask_dir : 'binary_patch_mask/'
   binary_erode_mask_dir : 'binary_patch_erode_mask/'
