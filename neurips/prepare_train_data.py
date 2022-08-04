@@ -1,19 +1,18 @@
 
 from SmartPatch2D import SmartPatch2D
-from config_unet import NeurIPSUnetConfig
+from config_data import NeurIPSDataConfig
 
 import hydra
 from hydra.core.config_store import ConfigStore
 
 
 configstore = ConfigStore.instance()
-configstore.store(name = 'neurips_unet_config', node = NeurIPSUnetConfig)
+configstore.store(name = 'neurips_data_config', node = NeurIPSDataConfig)
 
-@hydra.main(config_path="conf", config_name='config_unet')
-def main(config : NeurIPSUnetConfig):
+@hydra.main(config_path="conf", config_name='config_data')
+def main(config : NeurIPSDataConfig):
 
             base_dir = config.paths.base_dir
-            npz_filename = config.files.npz_filename
             raw_dir = config.paths.raw_dir
             raw_save_dir = config.paths.raw_save_dir
             real_mask_dir = config.paths.real_mask_dir 
@@ -25,7 +24,7 @@ def main(config : NeurIPSUnetConfig):
             pattern = config.params.pattern
             num_channels = config.params.num_channels
 
-            SmartPatch2D(base_dir, npz_filename, (patch_y, patch_x), num_channels,  raw_dir = raw_dir, raw_save_dir = raw_save_dir,
+            SmartPatch2D(base_dir, (patch_y, patch_x), num_channels,  raw_dir = raw_dir, raw_save_dir = raw_save_dir,
      real_mask_dir = real_mask_dir, binary_mask_dir = binary_mask_dir, binary_erode_mask_dir = binary_erode_mask_dir,  pattern = pattern)
            
 
