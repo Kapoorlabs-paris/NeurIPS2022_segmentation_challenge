@@ -6,12 +6,12 @@ params:
     kern_size: 3
     n_patches_per_image: 32
     startfilter: 32
-    validation_split: 0.0001
+    validation_split: 0.01
     n_channel_in: 3
     pattern: '.tiff'
     depth: 3
     batch_size: 10
-    generate_npz: True
+    generate_npz: False
     train_unet: True
     train_seed_unet: True
     train_star: False
