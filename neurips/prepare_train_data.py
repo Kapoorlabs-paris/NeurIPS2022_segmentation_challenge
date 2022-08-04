@@ -1,5 +1,5 @@
 
-from .SmartPatch2D import SmartPatch2D
+from SmartPatch2D import SmartPatch2D
 from config_unet import NeurIPSUnetConfig
 
 import hydra
@@ -7,9 +7,9 @@ from hydra.core.config_store import ConfigStore
 
 
 configstore = ConfigStore.instance()
-configstore.store(name = 'neurips_config', node = NeurIPSUnetConfig)
+configstore.store(name = 'neurips_unet_config', node = NeurIPSUnetConfig)
 
-@hydra.main(config_path="conf", config_name='config-unet')
+@hydra.main(config_path="conf", config_name='config_unet')
 def main(config : NeurIPSUnetConfig):
 
             base_dir = config.paths.base_dir
