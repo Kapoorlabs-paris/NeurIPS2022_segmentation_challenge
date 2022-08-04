@@ -1,14 +1,16 @@
 import os
 from pathlib import Path
 from tifffile import imread, imwrite
-from skimage.measure import label, regionprops
-
+from skimage.measure import  regionprops
+import numpy as np
+from scipy import ndimage
+from skimage.morphology import binary_erosion
 class SmartPatch2D(object):
 
 
     def __init__(self, base_dir, npz_filename, patch_size, num_channels,  raw_dir = '/Raw/',
      raw_save_dir = '/raw_patches/', erosion_iterations = 2,
-     real_mask_dir = '/real_mask/', binary_mask_dir = '/binary_patches_mask/',
+     real_mask_dir = '/real_mask/',real_mask_patch_dir = '/real_patch_mask/', binary_mask_dir = '/binary_patches_mask/',
      binary_erode_mask_dir = '/binary_patches_erode_mask/',  pattern = '.tif', lower_ratio_fore_to_back = 0.3,
      upper_ratio_fore_to_back = 0.9 ):
 
@@ -21,6 +23,7 @@ class SmartPatch2D(object):
             self.num_channels = num_channels
             self.real_mask_dir = real_mask_dir
             self.binary_mask_dir = binary_mask_dir
+            self.real_mask_patch_dir = real_mask_patch_dir
             self.binary_erode_mask_dir = binary_erode_mask_dir
             self.pattern = pattern
             self.search_pattern = '*' + self.pattern
@@ -30,7 +33,7 @@ class SmartPatch2D(object):
             self.create_smart_patches()
 
 
-    def create_smart_patches():        
+    def create_smart_patches(self):        
 
           Raw_path = Path(self.base_dir + self.raw_dir)
           Raw = list(Raw_path.glob(self.search_pattern))
@@ -61,7 +64,9 @@ class SmartPatch2D(object):
                       self.crop_labelimage = labelimage[region] 
                       self.region_selector()
                       if self.valid:
-                         
+
+                         imwrite(self.base_dir + self.real_mask_patch_dir + '/' + os.path.splitext(fname.name)[0] + count + self.pattern, self.crop_labelimage)
+
                          binary_image = self.crop_labelimage > 0   
                          imwrite(self.base_dir + self.binary_mask_dir + '/' + os.path.splitext(fname.name)[0] + count + self.pattern, binary_image)
 

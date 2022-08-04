@@ -6,6 +6,7 @@ class Paths:
   base_dir : str
   raw_dir : str
   real_mask_dir : str 
+  real_mask_patch_dir : str
   binary_mask_dir : str
   binary_erode_mask_dir : str
 

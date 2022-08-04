@@ -1,6 +1,6 @@
 
 from vollseg import SmartSeeds2D
-from config-star import NeurIPSStarConfig
+from config_star import NeurIPSStarConfig
 import hydra
 from hydra.core.config_store import ConfigStore
 
