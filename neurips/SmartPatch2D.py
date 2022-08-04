@@ -10,8 +10,8 @@ class SmartPatch2D(object):
 
     def __init__(self, base_dir, patch_size, num_channels,  raw_dir = '/Raw/',
      raw_save_dir = '/raw_patches/', erosion_iterations = 2,
-     real_mask_dir = '/real_mask/',real_mask_patch_dir = '/real_patch_mask/', binary_mask_dir = '/binary_patches_mask/',
-     binary_erode_mask_dir = '/binary_patches_erode_mask/',  pattern = '.tif', lower_ratio_fore_to_back = 0.3,
+     real_mask_dir = '/real_mask/',real_mask_patch_dir = '/real_patch_mask/', binary_mask_dir = '/binary_patch_mask/',
+     binary_erode_mask_dir = '/binary_patch_erode_mask/',  pattern = '.tif', lower_ratio_fore_to_back = 0.3,
      upper_ratio_fore_to_back = 0.9 ):
 
             self.base_dir = base_dir

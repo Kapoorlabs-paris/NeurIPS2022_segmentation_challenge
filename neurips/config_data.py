@@ -17,6 +17,9 @@ class Params:
     num_channels: int
     patch_x: int 
     patch_y: int 
+    lower_ratio_fore_to_back: float
+    upper_ratio_fore_to_back: float
+
 
 @dataclass
 class NeurIPSDataConfig:

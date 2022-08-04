@@ -23,9 +23,11 @@ def main(config : NeurIPSDataConfig):
             patch_y = config.params.patch_y
             pattern = config.params.pattern
             num_channels = config.params.num_channels
-
+            lower_ratio_fore_to_back = config.params.lower_ratio_fore_to_back
+            upper_ratio_fore_to_back = config.params.upper_ratio_fore_to_back
             SmartPatch2D(base_dir, (patch_y, patch_x), num_channels,  raw_dir = raw_dir, raw_save_dir = raw_save_dir,
-     real_mask_dir = real_mask_dir, binary_mask_dir = binary_mask_dir, binary_erode_mask_dir = binary_erode_mask_dir,  pattern = pattern)
+     real_mask_dir = real_mask_dir, binary_mask_dir = binary_mask_dir, binary_erode_mask_dir = binary_erode_mask_dir,  pattern = pattern,
+     lower_ratio_fore_to_back = lower_ratio_fore_to_back,upper_ratio_fore_to_back= upper_ratio_fore_to_back )
            
 
 
