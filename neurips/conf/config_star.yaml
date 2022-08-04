@@ -22,4 +22,6 @@ paths:
   model_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_Models/'
   base_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/'
   raw_dir : 'raw_patches/'
-  real_mask_dir : 'real_patches_mask/' 
+  real_mask_dir : 'real_patch_mask/' 
+
+  

@@ -39,6 +39,8 @@ def main(config : NeurIPSStarConfig):
                         model_dir = model_dir,
                         raw_dir = raw_dir,
                         real_mask_dir = real_mask_dir,
+                        binary_mask_dir = None,
+                        binary_erode_mask_dir = None,
                         n_channel_in = n_channel_in,
                         load_data_sequence = load_data_sequence, 
                         validation_split = validation_split, 
@@ -52,6 +54,9 @@ def main(config : NeurIPSStarConfig):
                         train_star = train_star,
                         startfilter = startfilter, 
                         RGB = RGB,
+                        train_star = True,
+                        train_unet = False,
+                        train_seed_unet = False,
                         n_rays = n_rays, 
                         epochs = epochs, 
                         learning_rate = learning_rate)

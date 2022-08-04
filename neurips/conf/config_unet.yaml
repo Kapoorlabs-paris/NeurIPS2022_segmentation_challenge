@@ -14,6 +14,7 @@ params:
     generate_npz: True
     train_unet: True
     train_seed_unet: True
+    train_star: False
     RGB: True
     num_channels: 3
 files:
@@ -24,7 +25,6 @@ paths:
   base_dir : '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/'
   raw_dir : 'raw/'
   raw_save_dir : 'raw_patches/' 
-  real_mask_dir : 'real_mask/' 
-  real_mask_patch_dir : 'real_patches_mask/'
-  binary_mask_dir : 'binary_patches_mask/'
-  binary_erode_mask_dir : 'binary_patches_erode_mask/'
+  real_mask_dir : None 
+  binary_mask_dir : 'binary_patch_mask/'
+  binary_erode_mask_dir : 'binary_patch_erode_mask/'
