@@ -21,7 +21,7 @@ files:
   model_name : 'Kapoorlabs_NeuroIPS_p256_d3_f32_r64'
 paths:
   model_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_Models/'
-  base_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/'
+  base_dir : '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/'
   raw_dir : 'raw/'
   raw_save_dir : 'raw_patches/' 
   real_mask_dir : 'real_mask/' 

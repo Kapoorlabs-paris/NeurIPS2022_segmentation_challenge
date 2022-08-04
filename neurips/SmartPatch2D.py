@@ -65,28 +65,29 @@ class SmartPatch2D(object):
                       crop_Yplus = y   + int(self.patch_size[0]/2)
                       region =(slice(int(crop_Yminus), int(crop_Yplus)),
                                                                 slice(int(crop_Xminus), int(crop_Xplus)))
-
+                      
                       self.crop_labelimage = labelimage[region] 
-                      self.region_selector()
-                      if self.valid:
+                      if self.crop_labelimage.shape[0] == self.patch_size[0] and self.crop_labelimage.shape[1] == self.patch_size[1]:
+                            self.region_selector()
+                            if self.valid:
 
-                         imwrite(self.base_dir + self.real_mask_patch_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, self.crop_labelimage)
+                                imwrite(self.base_dir + self.real_mask_patch_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, self.crop_labelimage)
 
-                         binary_image = self.crop_labelimage > 0   
-                         imwrite(self.base_dir + self.binary_mask_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, binary_image)
+                                binary_image = self.crop_labelimage > 0   
+                                imwrite(self.base_dir + self.binary_mask_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, binary_image)
 
-                         if self.erosion_iterations > 0:
-                               eroded_crop_labelimage = erode_labels(self.crop_labelimage.astype('uint16'), self.erosion_iterations)
-                         eroded_binary_image = eroded_crop_labelimage > 0   
-                         imwrite(self.base_dir + self.binary_erode_mask_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, eroded_binary_image)
+                                if self.erosion_iterations > 0:
+                                    eroded_crop_labelimage = erode_labels(self.crop_labelimage.astype('uint16'), self.erosion_iterations)
+                                eroded_binary_image = eroded_crop_labelimage > 0   
+                                imwrite(self.base_dir + self.binary_erode_mask_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, eroded_binary_image)
 
 
-                         region =(slice(int(crop_Yminus), int(crop_Yplus)),
-                                                                slice(int(crop_Xminus), int(crop_Xplus)), slice(0, self.num_channels))
-                         self.raw_image = imread(Path(self.base_dir + self.raw_dir + name + self.pattern ))[region]
-                         
-                         imwrite(self.base_dir + self.raw_save_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, self.raw_image)
-                         
+                                region =(slice(int(crop_Yminus), int(crop_Yplus)),
+                                                                        slice(int(crop_Xminus), int(crop_Xplus)), slice(0, self.num_channels))
+                                self.raw_image = imread(Path(self.base_dir + self.raw_dir + name + self.pattern ))[region]
+                                
+                                imwrite(self.base_dir + self.raw_save_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, self.raw_image)
+                                
 
     def region_selector(self):
     
