@@ -11,7 +11,7 @@ params:
     pattern: '.tiff'
     depth: 3
     batch_size: 10
-    generate_npz: False
+    generate_npz: True
     train_unet: True
     train_seed_unet: True
     train_star: False
