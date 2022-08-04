@@ -44,7 +44,6 @@ def main(config : NeurIPSUnetConfig):
                         model_name = model_name, 
                         model_dir = model_dir,
                         raw_dir = raw_dir,
-                        real_mask_dir = None,
                         binary_mask_dir = binary_mask_dir,
                         binary_erode_mask_dir = binary_erode_mask_dir,
                         n_channel_in = n_channel_in,
