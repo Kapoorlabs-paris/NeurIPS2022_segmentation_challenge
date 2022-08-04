@@ -52,7 +52,6 @@ def main(config : NeurIPSStarConfig):
                         depth = depth, 
                         pattern = pattern,
                         kern_size = kern_size, 
-                        train_star = train_star,
                         startfilter = startfilter, 
                         RGB = RGB,
                         train_star = True,
