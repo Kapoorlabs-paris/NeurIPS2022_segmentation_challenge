@@ -37,10 +37,10 @@ class SmartPatch2D(object):
 
           
          
-          Path(self.raw_save_dir).mkdir(exist_ok = True)
-          Path(self.real_mask_patch_dir).mkdir(exist_ok = True)
-          Path(self.binary_mask_dir).mkdir(exist_ok = True)
-          Path(self.binary_erode_mask_dir).mkdir(exist_ok = True) 
+          Path(self.base_dir + self.raw_save_dir).mkdir(exist_ok = True)
+          Path(self.base_dir + self.real_mask_patch_dir).mkdir(exist_ok = True)
+          Path(self.base_dir + self.binary_mask_dir).mkdir(exist_ok = True)
+          Path(self.base_dir + self.binary_erode_mask_dir).mkdir(exist_ok = True) 
 
 
           Real_Mask_path = Path(self.base_dir + self.real_mask_dir)
