@@ -23,7 +23,6 @@ files:
 paths:
   model_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_Models/'
   base_dir : '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/'
-  raw_dir : 'raw/'
-  raw_save_dir : 'raw_patches/' 
+  raw_dir : 'raw_patches/'
   binary_mask_dir : 'binary_patch_mask/'
   binary_erode_mask_dir : 'binary_patch_erode_mask/'
