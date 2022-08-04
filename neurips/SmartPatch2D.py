@@ -96,9 +96,9 @@ class SmartPatch2D(object):
 
         norm_foreground = len(non_zero_indices)/ (self.patch_size[0] * self.patch_size[1])
         norm_background = len(zero_indices)/ (self.patch_size[0] * self.patch_size[1])
-        if (len(zero_indices) > 0):
+        if norm_background > 0:
            index_ratio = float(norm_foreground)/float(norm_background) 
-           print(index_ratio,len(non_zero_indices),len(zero_indices) )
+           print(index_ratio,norm_foreground,norm_background )
            if index_ratio >= self.lower_ratio_fore_to_back  and index_ratio <= self.upper_ratio_fore_to_back:
 
                self.valid = True
