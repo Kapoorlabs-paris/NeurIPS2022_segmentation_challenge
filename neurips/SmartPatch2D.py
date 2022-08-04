@@ -71,15 +71,15 @@ class SmartPatch2D(object):
                             self.region_selector()
                             if self.valid:
 
-                                imwrite(self.base_dir + self.real_mask_patch_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, self.crop_labelimage)
+                                imwrite(self.base_dir + self.real_mask_patch_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, self.crop_labelimage.astype('uint16'))
 
                                 binary_image = self.crop_labelimage > 0   
-                                imwrite(self.base_dir + self.binary_mask_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, binary_image)
+                                imwrite(self.base_dir + self.binary_mask_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, binary_image.astype('uint16'))
 
                                 if self.erosion_iterations > 0:
                                     eroded_crop_labelimage = erode_labels(self.crop_labelimage.astype('uint16'), self.erosion_iterations)
                                 eroded_binary_image = eroded_crop_labelimage > 0   
-                                imwrite(self.base_dir + self.binary_erode_mask_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, eroded_binary_image)
+                                imwrite(self.base_dir + self.binary_erode_mask_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, eroded_binary_image.astype('uint16'))
 
 
                                 region =(slice(int(crop_Yminus), int(crop_Yplus)),
