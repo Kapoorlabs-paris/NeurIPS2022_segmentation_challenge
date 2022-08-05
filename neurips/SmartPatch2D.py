@@ -5,6 +5,7 @@ from skimage.measure import  regionprops
 import numpy as np
 from scipy import ndimage
 from skimage.morphology import binary_erosion
+from skimage.morphology import remove_small_objects
 class SmartPatch2D(object):
 
 
@@ -66,6 +67,8 @@ class SmartPatch2D(object):
                                                                 slice(int(crop_Xminus), int(crop_Xplus)))
                       
                       self.crop_labelimage = labelimage[region] 
+                      self.crop_labelimage = remove_small_objects(
+                               self.crop_labelimage.astype('uint16'), min_size=10)
                       if self.crop_labelimage.shape[0] == self.patch_size[0] and self.crop_labelimage.shape[1] == self.patch_size[1]:
                             self.region_selector()
                             if self.valid:
