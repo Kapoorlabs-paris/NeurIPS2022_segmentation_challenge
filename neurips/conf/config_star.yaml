@@ -6,7 +6,7 @@ params:
     kern_size: 3
     n_rays: 64
     startfilter: 32
-    validation_split: 0.01
+    validation_split: 0.0001
     n_channel_in: 3
     pattern: '.tiff'
     depth: 3
