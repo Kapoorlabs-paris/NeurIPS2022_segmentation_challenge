@@ -4,7 +4,7 @@ params:
     patch_y: 256
     num_channels: 3
     pattern: '.tiff'
-    lower_ratio_fore_to_back: 0.3
+    lower_ratio_fore_to_back: 0.4
     upper_ratio_fore_to_back: 0.9
 
 

@@ -1,0 +1,26 @@
+params:
+  epoch: 200
+  learning_rate: 0.0001
+  patch_x: 256
+  patch_y: 256
+  kern_size: 3
+  n_rays: 64
+  startfilter: 32
+  validation_split: 0.01
+  n_channel_in: 3
+  pattern: .tiff
+  depth: 3
+  batch_size: 50
+  use_gpu_opencl: false
+  load_data_sequence: false
+  train_star: true
+  RGB: true
+files:
+  model_name: Kapoorlabs_NeuroIPS_p256_d3_f32_r64
+paths:
+  model_dir: /gpfsstore/rech/jsy/uzj81mi/Segmentation_Models/
+  base_dir: /gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/
+  raw_dir: raw_patches/
+  real_mask_dir: real_patch_mask/
+  binary_mask_dir: binary_patch_mask/
+  binary_erode_mask_dir: binary_patch_erode_mask/

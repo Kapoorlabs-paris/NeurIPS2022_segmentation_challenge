@@ -1,0 +1,27 @@
+[2022-08-04 22:32:28,552][tensorflow][WARNING] - AutoGraph could not transform <function _mean_or_not.<locals>.<lambda> at 0x1508ac2efbe0> and will run it as-is.
+Cause: could not parse the source code of <function _mean_or_not.<locals>.<lambda> at 0x1508ac2efbe0>: found multiple definitions with identical signatures at the location. This error may be avoided by defining each lambda on a single line and with unique argument names. The matching definitions were:
+Match 0:
+lambda x: K.mean(x, axis=-1)
+
+Match 1:
+lambda x: x
+
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
+[2022-08-04 22:32:28,853][tensorflow][WARNING] - AutoGraph could not transform <function _mean_or_not.<locals>.<lambda> at 0x1508ac2efeb0> and will run it as-is.
+Cause: could not parse the source code of <function _mean_or_not.<locals>.<lambda> at 0x1508ac2efeb0>: found multiple definitions with identical signatures at the location. This error may be avoided by defining each lambda on a single line and with unique argument names. The matching definitions were:
+Match 0:
+lambda x: K.mean(x, axis=-1)
+
+Match 1:
+lambda x: x
+
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
+[2022-08-04 22:32:28,870][tensorflow][WARNING] - AutoGraph could not transform <function _mean_or_not.<locals>.<lambda> at 0x1508aa79dbd0> and will run it as-is.
+Cause: could not parse the source code of <function _mean_or_not.<locals>.<lambda> at 0x1508aa79dbd0>: found multiple definitions with identical signatures at the location. This error may be avoided by defining each lambda on a single line and with unique argument names. The matching definitions were:
+Match 0:
+lambda x: K.mean(x, axis=-1)
+
+Match 1:
+lambda x: x
+
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert

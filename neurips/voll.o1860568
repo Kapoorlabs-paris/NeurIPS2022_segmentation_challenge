@@ -1,0 +1,26 @@
++ export LD_LIBRARY_PATH=/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib:/linkhome/rech/gengoq01/uzj81mi/.conda/envs/genie/lib/
++ LD_LIBRARY_PATH=/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib:/linkhome/rech/gengoq01/uzj81mi/.conda/envs/genie/lib/
++ echo /gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib:/linkhome/rech/gengoq01/uzj81mi/.conda/envs/genie/lib/
+/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib:/linkhome/rech/gengoq01/uzj81mi/.conda/envs/genie/lib/
++ python -u train_model_star_hydra.py
+2022-08-05 23:33:25.011926: I tensorflow/core/util/util.cc:169] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+train_model_star_hydra.py (10): 
+The version_base parameter is not specified.
+Please specify a compatability version level, or None.
+Will assume defaults for version 1.1
+hydra.py (119): Future Hydra versions will no longer change working directory at job runtime by default.
+See https://hydra.cc/docs/next/upgrades/1.1_to_1.2/changes_to_job_working_dir/ for more information.
+Instance segmentation masks: 0
+Semantic segmentation masks: 0
+Training StarDistModel model
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "/gpfsdsstore/projects/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS2022_segmentation_challenge/neurips/train_model_star_hydra.py", line 38, in main
+    SmartSeeds2D(base_dir = base_dir,
+  File "/linkhome/rech/gengoq01/uzj81mi/.conda/envs/genie/lib/python3.10/site-packages/vollseg/SmartSeeds2D.py", line 149, in __init__
+    self.Train()
+  File "/linkhome/rech/gengoq01/uzj81mi/.conda/envs/genie/lib/python3.10/site-packages/vollseg/SmartSeeds2D.py", line 396, in Train
+    assert len(Raw) > 1, "not enough training data"
+AssertionError: not enough training data
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
