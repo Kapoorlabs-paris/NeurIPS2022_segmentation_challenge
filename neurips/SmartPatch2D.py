@@ -50,7 +50,7 @@ class SmartPatch2D(object):
           with concurrent.futures.ThreadPoolExecutor(max_workers = nthreads) as executor:
               futures = []
           for fname in RealMask: 
-                futures.append(executor.submit(self.label_maker()), fname = fname)
+                futures.append(executor.submit(self.label_maker, fname = fname))
                  
           for future in concurrent.futures.as_completed(futures):
                    future.result() 
