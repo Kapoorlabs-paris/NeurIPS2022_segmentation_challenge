@@ -4,6 +4,7 @@ from tifffile import imread, imwrite
 from skimage.measure import  regionprops
 import numpy as np
 from scipy import ndimage
+import concurrent
 from skimage.morphology import binary_erosion
 from skimage.morphology import remove_small_objects
 class SmartPatch2D(object):
@@ -45,10 +46,16 @@ class SmartPatch2D(object):
 
           Real_Mask_path = Path(self.base_dir + self.real_mask_dir)
           RealMask = list(Real_Mask_path.glob(self.search_pattern))
-
-
+          nthreads = os.cpu_count()
+          with concurrent.futures.ThreadPoolExecutor(max_workers = nthreads) as executor:
+              futures = []
           for fname in RealMask: 
+                futures.append(executor.submit(self.label_maker()), fname = fname)
+                 
+          for future in concurrent.futures.as_completed(futures):
+                   future.result() 
 
+    def label_maker(self, fname):
                 labelimage = imread(fname)
                 name = os.path.splitext(fname.name)[0]
                 labelimage = labelimage.astype('uint16')
@@ -90,6 +97,8 @@ class SmartPatch2D(object):
                                 
                                 imwrite(self.base_dir + self.raw_save_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, self.raw_image)
                                 
+
+
 
     def region_selector(self):
     
