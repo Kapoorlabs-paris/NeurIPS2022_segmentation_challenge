@@ -46,16 +46,16 @@ class SmartPatch2D(object):
 
           Real_Mask_path = Path(self.base_dir + self.real_mask_dir)
           RealMask = list(Real_Mask_path.glob(self.search_pattern))
-          nthreads = os.cpu_count()
+          
           for fname in RealMask:
-              with concurrent.futures.ThreadPoolExecutor(max_workers = nthreads) as executor:
+              
                        
                         labelimage = imread(fname)
                         name = os.path.splitext(fname.name)[0]
                         labelimage = labelimage.astype('uint16')
                         properties = regionprops(labelimage)
                         for count, prop in enumerate(properties):
-                            executor.submit(self.label_maker, name = name, fname = fname, labelimage = labelimage, count = count, prop = prop)
+                            self.label_maker( name , fname, labelimage , count , prop )
                         
                         
 
