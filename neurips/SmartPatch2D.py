@@ -62,8 +62,7 @@ class SmartPatch2D(object):
                 properties = regionprops(labelimage)
                 for count, prop in enumerate(properties):  
 
-                    centroid = prop.centroid
-                    if prop.area > 20: 
+                      centroid = prop.centroid
                       x = centroid[1]
                       y = centroid[0]
 
@@ -75,14 +74,11 @@ class SmartPatch2D(object):
                                                                 slice(int(crop_Xminus), int(crop_Xplus)))
                       
                       self.crop_labelimage = labelimage[region] 
-                     
+                      self.crop_labelimage = remove_small_objects(
+                               self.crop_labelimage.astype('uint16'), min_size=10)
                       if self.crop_labelimage.shape[0] == self.patch_size[0] and self.crop_labelimage.shape[1] == self.patch_size[1]:
                             self.region_selector()
                             if self.valid:
-                                
-                                self.crop_labelimage = remove_small_objects(
-                                  self.crop_labelimage.astype('uint16'), min_size = 20)
-
 
                                 imwrite(self.base_dir + self.real_mask_patch_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, self.crop_labelimage.astype('uint16'))
 
@@ -110,13 +106,12 @@ class SmartPatch2D(object):
         self.valid = False
         non_zero_indices = list(zip(*np.where(self.crop_labelimage > 0)))
  
-        total_indices = zero_indices + non_zero_indices
+        total_indices = list(zip(*np.where(self.crop_labelimage >= 0)))
 
         norm_foreground = len(non_zero_indices)/ len(total_indices)
         norm_background = len(zero_indices)/ len(total_indices)
         if norm_background > 0:
-           index_ratio = float(norm_foreground)
-          
+           index_ratio = float(norm_foreground)/float(norm_background) 
            if index_ratio >= self.lower_ratio_fore_to_back  and index_ratio <= self.upper_ratio_fore_to_back:
 
                self.valid = True
