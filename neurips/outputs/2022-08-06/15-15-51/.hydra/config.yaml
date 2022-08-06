@@ -1,0 +1,14 @@
+params:
+  patch_x: 256
+  patch_y: 256
+  num_channels: 3
+  pattern: .tiff
+  lower_ratio_fore_to_back: 0.5
+  upper_ratio_fore_to_back: 0.9
+paths:
+  base_dir: /gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/
+  raw_dir: raw/
+  raw_save_dir: raw_patches/
+  real_mask_dir: real_mask/
+  binary_mask_dir: binary_patch_mask/
+  binary_erode_mask_dir: binary_patch_erode_mask/

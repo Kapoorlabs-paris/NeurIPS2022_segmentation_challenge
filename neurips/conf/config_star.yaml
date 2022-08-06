@@ -1,6 +1,6 @@
 params:
     epoch: 200
-    learning_rate: 1.0E-3
+    learning_rate: 1.0E-4
     patch_x: 256
     patch_y: 256
     kern_size: 3
@@ -10,7 +10,7 @@ params:
     n_channel_in: 3
     pattern: '.tiff'
     depth: 3
-    batch_size: 10
+    batch_size: 50
     use_gpu_opencl: False
     load_data_sequence: False
     train_star: True

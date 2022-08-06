@@ -1,0 +1,3 @@
+[2022-08-06 08:57:55,210][tensorflow][WARNING] - AutoGraph could not transform <function _gcd_import at 0x14e9b9d33400> and will run it as-is.
+Cause: Unable to locate the source code of <function _gcd_import at 0x14e9b9d33400>. Note that functions defined in certain environments, like the interactive Python shell, do not expose their source code. If that is the case, you should define them in a .py source file. If you are certain the code is graph-compatible, wrap the call using @tf.autograph.experimental.do_not_convert. Original error: could not get source code
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
