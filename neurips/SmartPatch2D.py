@@ -107,11 +107,9 @@ class SmartPatch2D(object):
         non_zero_indices = list(zip(*np.where(self.crop_labelimage > 0)))
  
         total_indices = list(zip(*np.where(self.crop_labelimage >= 0)))
-
-        norm_foreground = len(non_zero_indices)/ len(total_indices)
-        norm_background = len(zero_indices)/ len(total_indices)
-        if norm_background > 0:
-           index_ratio = float(norm_foreground)/float(norm_background) 
+        if len(total_indices) > 0:
+           norm_foreground = len(non_zero_indices)/ len(total_indices)
+           index_ratio = float(norm_foreground) 
            if index_ratio >= self.lower_ratio_fore_to_back  and index_ratio <= self.upper_ratio_fore_to_back:
 
                self.valid = True
