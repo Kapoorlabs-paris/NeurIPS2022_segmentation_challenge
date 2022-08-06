@@ -48,12 +48,12 @@ class SmartPatch2D(object):
           RealMask = list(Real_Mask_path.glob(self.search_pattern))
           nthreads = os.cpu_count()
           with concurrent.futures.ThreadPoolExecutor(max_workers = nthreads) as executor:
-              futures = []
-          for fname in RealMask: 
-                futures.append(executor.submit(self.label_maker, fname = fname))
-                 
-          for future in concurrent.futures.as_completed(futures):
-                   future.result() 
+                futures = []
+                for fname in RealMask: 
+                        futures.append(executor.submit(self.label_maker, fname = fname))
+                        
+                for future in concurrent.futures.as_completed(futures):
+                        future.result() 
 
     def label_maker(self, fname):
                 labelimage = imread(fname)
