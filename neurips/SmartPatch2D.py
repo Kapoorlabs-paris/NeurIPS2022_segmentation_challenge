@@ -47,21 +47,21 @@ class SmartPatch2D(object):
           Real_Mask_path = Path(self.base_dir + self.real_mask_dir)
           RealMask = list(Real_Mask_path.glob(self.search_pattern))
           nthreads = os.cpu_count()
-          with concurrent.futures.ThreadPoolExecutor(max_workers = nthreads) as executor:
-                futures = []
-                for fname in RealMask: 
-                        futures.append(executor.submit(self.label_maker, fname = fname))
+          for fname in RealMask:
+              with concurrent.futures.ThreadPoolExecutor(max_workers = nthreads) as executor:
+                       
+                        labelimage = imread(fname)
+                        name = os.path.splitext(fname.name)[0]
+                        labelimage = labelimage.astype('uint16')
+                        properties = regionprops(labelimage)
+                        for count, prop in enumerate(properties):
+                            executor.submit(self.label_maker, name = name, fname = fname, labelimage = labelimage, count = count, prop = prop)
                         
-                for future in concurrent.futures.as_completed(futures):
-                        future.result() 
+                        
 
-    def label_maker(self, fname):
-                labelimage = imread(fname)
-                name = os.path.splitext(fname.name)[0]
-                labelimage = labelimage.astype('uint16')
-                properties = regionprops(labelimage)
-                for count, prop in enumerate(properties):  
-
+    def label_maker(self, name, fname,labelimage, count, prop):
+                  
+                      self.valid = False
                       centroid = prop.centroid
                       x = centroid[1]
                       y = centroid[0]
@@ -78,6 +78,7 @@ class SmartPatch2D(object):
                                self.crop_labelimage.astype('uint16'), min_size=10)
                       if self.crop_labelimage.shape[0] == self.patch_size[0] and self.crop_labelimage.shape[1] == self.patch_size[1]:
                             self.region_selector()
+
                             if self.valid:
 
                                 imwrite(self.base_dir + self.real_mask_patch_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, self.crop_labelimage.astype('uint16'))
@@ -97,13 +98,12 @@ class SmartPatch2D(object):
                                 
                                 imwrite(self.base_dir + self.raw_save_dir + '/' + os.path.splitext(fname.name)[0] + str(count) + self.pattern, self.raw_image)
                                 
-
+                               
 
 
     def region_selector(self):
     
-        zero_indices = list(zip(*np.where(self.crop_labelimage == 0)))
-        self.valid = False
+        
         non_zero_indices = list(zip(*np.where(self.crop_labelimage > 0)))
  
         total_indices = list(zip(*np.where(self.crop_labelimage >= 0)))
