@@ -48,8 +48,8 @@ class SmartPatch2D(object):
           RealMask = list(Real_Mask_path.glob(self.search_pattern))
           
           for fname in RealMask:
-              
-                       
+               
+                            print(fname)                        
                             labelimage = imread(fname)
                             name = os.path.splitext(fname.name)[0]
                             labelimage = labelimage.astype('uint16')
