@@ -33,7 +33,8 @@ def main(config : NeurIPSUnetConfig):
             pattern = config.params.pattern
             generate_npz = config.params.generate_npz
             RGB = config.params.RGB
-
+            train_unet = config.params.train_unet
+            train_seed_unet = config.params.train_seed_unet
             
             
 
@@ -48,8 +49,8 @@ def main(config : NeurIPSUnetConfig):
                         n_channel_in = n_channel_in,
                         validation_split = validation_split, 
                         generate_npz = generate_npz, 
-                        train_unet = True, 
-                        train_seed_unet = True,
+                        train_unet = train_unet, 
+                        train_seed_unet = train_seed_unet,
                         train_star = False,
                         patch_x= patch_x, 
                         patch_y= patch_y, 

@@ -51,11 +51,12 @@ class SmartPatch2D(object):
               
                        
                         labelimage = imread(fname)
-                        name = os.path.splitext(fname.name)[0]
-                        labelimage = labelimage.astype('uint16')
-                        properties = regionprops(labelimage)
-                        for count, prop in enumerate(properties):
-                            self.label_maker( name , fname, labelimage , count , prop )
+                        if labelimage.shape[0] >= self.patch_size[0] and labelimage.shape[1] >= self.patch_size[1]:
+                            name = os.path.splitext(fname.name)[0]
+                            labelimage = labelimage.astype('uint16')
+                            properties = regionprops(labelimage)
+                            for count, prop in enumerate(properties):
+                                self.label_maker( name , fname, labelimage , count , prop )
                         
                         
 
