@@ -50,8 +50,7 @@ class SmartPatch2D(object):
           for fname in RealMask:
               
                        
-                        labelimage = imread(fname)
-                        if labelimage.shape[0] >= self.patch_size[0] and labelimage.shape[1] >= self.patch_size[1]:
+                            labelimage = imread(fname)
                             name = os.path.splitext(fname.name)[0]
                             labelimage = labelimage.astype('uint16')
                             properties = regionprops(labelimage)
