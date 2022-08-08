@@ -29,7 +29,7 @@ def main(config : NeurIPSVollSegConfig):
             max_size = config.params.max_size
             lower_perc = config.params.lower_perc
             upper_perc = config.params.upper_perc
-            n_tiles = (config.params.n_tiles_y, config.params.n_tiles_x)
+            n_tiles = (config.params.n_tiles_y, config.params.n_tiles_x, 1)
             donormalize = config.params.donormalize
             axes = config.params.axes
             slice_merge = config.params.slice_merge
