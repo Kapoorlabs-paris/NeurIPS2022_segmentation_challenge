@@ -1,0 +1,23 @@
+params:
+    n_tiles_x: 4
+    n_tiles_y: 4
+    min_size : 1
+    min_size_mask : 10
+    max_size :  1000000
+    dounet : True
+    seedpool : True
+    slice_merge : False
+    UseProbability : True
+    donormalize : True
+    lower_perc : 1
+    upper_perc: 99.8
+    RGB : True
+    axes : 'YX'
+
+files:
+  star_model_name : 'Kapoorlabs_NeuroIPS_p256_d3_f32_r64'
+  unet_model_name : 'unet_Kapoorlabs_NeuroIPS_p256_d3_f32_r64'
+paths:
+  model_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_Models/'
+  image_dir : '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_UnLabeled/'
+  save_dir : '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_UnLabeled/Kapoorlabs_Results/'  
