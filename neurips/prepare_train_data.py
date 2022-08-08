@@ -16,6 +16,7 @@ def main(config : NeurIPSDataConfig):
             raw_dir = config.paths.raw_dir
             raw_save_dir = config.paths.raw_save_dir
             real_mask_dir = config.paths.real_mask_dir 
+            real_mask_patch_dir = config.paths.real_mask_patch_dir
             binary_mask_dir = config.paths.binary_mask_dir
             binary_erode_mask_dir = config.paths.binary_erode_mask_dir
             #Network training parameters
@@ -26,7 +27,7 @@ def main(config : NeurIPSDataConfig):
             lower_ratio_fore_to_back = config.params.lower_ratio_fore_to_back
             upper_ratio_fore_to_back = config.params.upper_ratio_fore_to_back
             SmartPatch2D(base_dir, (patch_y, patch_x), num_channels,  raw_dir = raw_dir, raw_save_dir = raw_save_dir,
-     real_mask_dir = real_mask_dir, binary_mask_dir = binary_mask_dir, binary_erode_mask_dir = binary_erode_mask_dir,  pattern = pattern,
+     real_mask_dir = real_mask_dir, real_mask_patch_dir = real_mask_patch_dir, binary_mask_dir = binary_mask_dir, binary_erode_mask_dir = binary_erode_mask_dir,  pattern = pattern,
      lower_ratio_fore_to_back = lower_ratio_fore_to_back,upper_ratio_fore_to_back= upper_ratio_fore_to_back )
            
 

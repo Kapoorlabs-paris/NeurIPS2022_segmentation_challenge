@@ -1,0 +1,28 @@
+[2022-08-07 17:56:05,329][tensorflow][WARNING] - AutoGraph could not transform <function _mean_or_not.<locals>.<lambda> at 0x14e519bd9fc0> and will run it as-is.
+Cause: could not parse the source code of <function _mean_or_not.<locals>.<lambda> at 0x14e519bd9fc0>: found multiple definitions with identical signatures at the location. This error may be avoided by defining each lambda on a single line and with unique argument names. The matching definitions were:
+Match 0:
+lambda x: K.mean(x, axis=-1)
+
+Match 1:
+lambda x: x
+
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
+[2022-08-07 17:56:05,622][tensorflow][WARNING] - AutoGraph could not transform <function _mean_or_not.<locals>.<lambda> at 0x14e519bda320> and will run it as-is.
+Cause: could not parse the source code of <function _mean_or_not.<locals>.<lambda> at 0x14e519bda320>: found multiple definitions with identical signatures at the location. This error may be avoided by defining each lambda on a single line and with unique argument names. The matching definitions were:
+Match 0:
+lambda x: K.mean(x, axis=-1)
+
+Match 1:
+lambda x: x
+
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
+[2022-08-07 17:56:05,672][tensorflow][WARNING] - AutoGraph could not transform <function _mean_or_not.<locals>.<lambda> at 0x14e519bd8c10> and will run it as-is.
+Cause: could not parse the source code of <function _mean_or_not.<locals>.<lambda> at 0x14e519bd8c10>: found multiple definitions with identical signatures at the location. This error may be avoided by defining each lambda on a single line and with unique argument names. The matching definitions were:
+Match 0:
+lambda x: K.mean(x, axis=-1)
+
+Match 1:
+lambda x: x
+
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
+[2022-08-07 17:56:19,649][tensorflow][WARNING] - Callback method `on_train_batch_end` is slow compared to the batch time (batch time: 0.1891s vs `on_train_batch_end` time: 0.2998s). Check your callbacks.
