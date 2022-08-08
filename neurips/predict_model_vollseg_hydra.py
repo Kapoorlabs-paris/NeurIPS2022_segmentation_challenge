@@ -1,7 +1,9 @@
 
 from vollseg import VollSeg, StarDist2D, UNET
 from tifffile import imread
+import imageio
 from pathlib import Path
+import numpy as np
 import os
 from config_predict import NeurIPSVollSegConfig
 import hydra
@@ -15,6 +17,7 @@ def main(config : NeurIPSVollSegConfig):
 
 
             image_dir = config.paths.image_dir
+            pattern = config.params.pattern
             search_pattern = '*' + config.params.pattern
             unet_model_name = config.files.unet_model_name 
             star_model_name = config.files.star_model_name
@@ -40,10 +43,19 @@ def main(config : NeurIPSVollSegConfig):
             Raw_path = Path(image_dir)
             Raw = list(Raw_path.glob(search_pattern))
             for fname in Raw:
-     
-                    image = imread(fname)
+                    if pattern.__contains__('tiff' or 'tif'):
+                       image = imread(fname)
+                    if pattern.__contains__('png'):
+                       image = imageio.imread(fname) 
+                    if(len(image.shape)==2):
+                            newimage = np.zeros([image.shape[0], image.shape[1], 3]) 
+                            for i in range(3): 
+                                newimage[:,:,i] = image
+                    else:
+                            newimage = image
                     Name = os.path.basename(os.path.splitext(fname)[0])
-                    VollSeg( image, 
+
+                    VollSeg( newimage, 
                             unet_model = unet_model, 
                             star_model = star_model, 
                             seedpool = seedpool, 
