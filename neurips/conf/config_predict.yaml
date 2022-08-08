@@ -13,6 +13,7 @@ params:
     upper_perc: 99.8
     RGB : True
     axes : 'YX'
+    pattern: '.tiff'
 
 files:
   star_model_name : 'Kapoorlabs_NeuroIPS_p256_d3_f32_r64'

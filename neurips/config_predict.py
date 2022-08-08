@@ -16,6 +16,7 @@ class Params:
     upper_perc: float 
     RGB : bool 
     axes : str 
+    pattern: str
 
 @dataclass
 class Files:
@@ -30,7 +31,7 @@ class Paths:
 
 
 @dataclass
-class NeurIPSPredictConfig:
+class NeurIPSVollSegConfig:
 
      paths: Paths
      files: Files
