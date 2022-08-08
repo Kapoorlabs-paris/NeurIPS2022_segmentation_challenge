@@ -20,5 +20,5 @@ files:
   unet_model_name : 'unet_Kapoorlabs_NeuroIPS_p256_d3_f32_r64'
 paths:
   model_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_Models/'
-  image_dir : '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_UnLabeled/'
-  save_dir : '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_UnLabeled/Kapoorlabs_Results/'  
+  image_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/TuningSet/'
+  save_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/TuningSet/Kapoorlabs_Results/'  
