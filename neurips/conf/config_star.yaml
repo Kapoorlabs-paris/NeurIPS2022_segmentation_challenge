@@ -10,7 +10,7 @@ params:
     n_channel_in: 3
     pattern: '.tiff'
     depth: 3
-    batch_size: 50
+    batch_size: 10
     use_gpu_opencl: False
     load_data_sequence: False
     train_star: True
@@ -21,7 +21,7 @@ files:
 paths:
   model_dir : '/gpfsstore/rech/jsy/uzj81mi/Segmentation_Models/'
   base_dir : '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/'
-  raw_dir : 'raw_patches/'
-  real_mask_dir : 'real_patch_mask/'
-  binary_mask_dir : 'binary_patch_mask/'
-  binary_erode_mask_dir : 'binary_patch_erode_mask/'  
+  raw_dir : 'raw_patches_512/'
+  real_mask_dir : 'real_patch_mask_512/'
+  binary_mask_dir : 'binary_patch_mask_512/'
+  binary_erode_mask_dir : 'binary_patch_erode_mask_512/'  

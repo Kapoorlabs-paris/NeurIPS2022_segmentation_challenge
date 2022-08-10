@@ -35,7 +35,7 @@ def main(config : NeurIPSUnetConfig):
             RGB = config.params.RGB
             train_unet = config.params.train_unet
             train_seed_unet = config.params.train_seed_unet
-            
+            n_patches_per_image = config.params.n_patches_per_image
             
 
             SmartSeeds2D(base_dir = base_dir, 
@@ -48,6 +48,7 @@ def main(config : NeurIPSUnetConfig):
                         binary_erode_mask_dir = binary_erode_mask_dir,
                         n_channel_in = n_channel_in,
                         validation_split = validation_split, 
+                        n_patches_per_image = n_patches_per_image,
                         generate_npz = generate_npz, 
                         train_unet = train_unet, 
                         train_seed_unet = train_seed_unet,
