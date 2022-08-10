@@ -10,7 +10,7 @@ from scipy.ndimage import gaussian_filter
 image_dir =  Path('/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw/')
 label_dir = Path('/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/real_mask/')
 
-Aug_image_dir =  'gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw_resize/'
+Aug_image_dir =  '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw_resize/'
 Aug_label_dir = '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/real_mask_resize/'
 
 Path(Aug_image_dir).mkdir(exist_ok=True)
@@ -25,7 +25,7 @@ zoom_axis= 1
 shift_range= 0.2 
 zoom_range= 2
 rotate_axis= 1
-size = (512,512)
+size = (512,512,3)
 rotate_angle= 'random'
 pattern = '*.tiff'
 
