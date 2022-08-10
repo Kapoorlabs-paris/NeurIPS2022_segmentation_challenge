@@ -25,7 +25,7 @@ zoom_axis= 1
 shift_range= 0.2 
 zoom_range= 2
 rotate_axis= 1
-size = (512,512,3)
+size = (512,512)
 rotate_angle= 'random'
 pattern = '*.tiff'
 
