@@ -5,7 +5,7 @@ from vollseg import Augmentation2DC, image_pixel_duplicator
 from pathlib import Path
 import numpy as np
 from scipy.ndimage import gaussian_filter
-
+from skimage.measure import label
 
 image_dir =  Path('/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw/')
 label_dir = Path('/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/real_mask/')
@@ -38,7 +38,7 @@ for fname in filesRaw:
                 image = imread(fname)
                 labelimage = imread(secondfname)
                 image = image_pixel_duplicator(image, size_raw)
-                labelimage = image_pixel_duplicator(labelimage, size_label) 
+                labelimage = label(image_pixel_duplicator(labelimage, size_label)) 
                 imwrite(Aug_image_dir + '/' + Name + '.tiff', image.astype('float32'))
                 imwrite(Aug_label_dir + '/' + Name + '.tiff', labelimage.astype('uint16'))
                            
