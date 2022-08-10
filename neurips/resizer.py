@@ -37,8 +37,9 @@ for fname in filesRaw:
         if Name == LabelName:
                 image = imread(fname)
                 labelimage = imread(secondfname)
-                image = image_pixel_duplicator(image, size_raw)
-                labelimage = label(image_pixel_duplicator(labelimage, size_label)) 
+                if image.shape[0] < size_raw[0] or image.shape[1] < size_raw[1]:
+                        image = image_pixel_duplicator(image, size_raw)
+                        labelimage = label(image_pixel_duplicator(labelimage, size_label)) 
                 imwrite(Aug_image_dir + '/' + Name + '.tiff', image.astype('float32'))
                 imwrite(Aug_label_dir + '/' + Name + '.tiff', labelimage.astype('uint16'))
                            
