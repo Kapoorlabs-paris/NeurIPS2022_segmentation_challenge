@@ -1,7 +1,7 @@
 import os
 import glob
 from tifffile import imread, imwrite
-from vollseg import Augmentation2DC
+from vollseg import Augmentation2DC, image_pixel_duplicator
 from pathlib import Path
 import numpy as np
 from scipy.ndimage import gaussian_filter
@@ -16,17 +16,10 @@ Aug_label_dir = '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_Ce
 Path(Aug_image_dir).mkdir(exist_ok=True)
 Path(Aug_label_dir).mkdir(exist_ok=True)
 
-gauss_filter_size = 0
-#choices for augmentation below are 1 or 2 or None
-flip_axis= 1
-shift_axis= 1
-zoom_axis= 1
-#shift range can be between -1 and 1 (-1 and 1 will translate the pixels completely out), zoom range > 0
-shift_range= 0.2 
-zoom_range= 2
-rotate_axis= 1
-size = (512,512)
-rotate_angle= 'random'
+
+size_raw = (512,512,3)
+size_label = (512,512)
+
 pattern = '*.tiff'
 
 filesRaw = list(image_dir.glob(pattern))
@@ -43,24 +36,9 @@ for fname in filesRaw:
         LabelName = os.path.basename(os.path.splitext(secondfname)[0])
         if Name == LabelName:
                 image = imread(fname)
-               
-                labelimage = gaussian_filter(imread(secondfname), gauss_filter_size)
-                Data.append(image)
-                Label.append(labelimage)
-                Data = np.asarray(Data)
-                Label = np.asarray(Label)
-
-                resize_pixels = Augmentation2DC(size =size)
-                aug_resize_pixels = resize_pixels.build(data=Data, label=Label)
-                aug_resize_pixels_pair = np.asarray(next(aug_resize_pixels))
-                count = 0
-                for i in range(0, aug_resize_pixels_pair.shape[1]):
-                    Name = 'resize_pixels' + str(count)
-                    imwrite(Aug_image_dir + '/' + Name + '.tiff', aug_resize_pixels_pair[0,i,:,:].astype('float32'))
-                    imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_resize_pixels_pair[1,i,:,:].astype('uint16'))
-                    count = count + 1   
-
-              
-
-                Data = []
-                Label = []           
+                labelimage = imread(secondfname)
+                image = image_pixel_duplicator(image, size_raw)
+                labelimage = image_pixel_duplicator(labelimage, size_label) 
+                imwrite(Aug_image_dir + '/' + Name + '.tiff', image.astype('float32'))
+                imwrite(Aug_label_dir + '/' + Name + '.tiff', labelimage.astype('uint16'))
+                           
