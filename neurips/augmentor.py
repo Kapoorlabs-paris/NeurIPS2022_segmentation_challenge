@@ -7,11 +7,11 @@ import numpy as np
 from scipy.ndimage import gaussian_filter
 
 
-image_dir =  Path('/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw_veto_256/')
-label_dir = Path('/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/real_mask_veto_256/')
+image_dir =  Path('/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw_resize/')
+label_dir = Path('/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/real_mask_resize/')
 
-Aug_image_dir =  '/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/aug_raw_veto_256/'
-Aug_label_dir = '/gpfsstore/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/real_mask_veto_256/'
+Aug_image_dir =  'gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw_aug/'
+Aug_label_dir = '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/real_mask_aug/'
 
 Path(Aug_image_dir).mkdir(exist_ok=True)
 Path(Aug_label_dir).mkdir(exist_ok=True)
@@ -25,6 +25,7 @@ zoom_axis= 1
 shift_range= 0.2 
 zoom_range= 2
 rotate_axis= 1
+size = (512,512)
 rotate_angle= 'random'
 pattern = '*.tiff'
 
