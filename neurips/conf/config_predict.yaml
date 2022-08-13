@@ -11,6 +11,8 @@ params:
     donormalize : True
     lower_perc : 1
     upper_perc: 99.8
+    prob_thresh : 0.8
+    nms_thresh : 0.3
     RGB : True
     axes : 'YX'
     pattern: '.tiff'

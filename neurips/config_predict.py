@@ -17,6 +17,8 @@ class Params:
     RGB : bool 
     axes : str 
     pattern: str
+    prob_thresh: float
+    nms_thresh: float
 
 @dataclass
 class Files:

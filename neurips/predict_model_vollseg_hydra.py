@@ -36,6 +36,8 @@ def main(config : NeurIPSVollSegConfig):
             UseProbability = config.params.UseProbability
             dounet = config.params.dounet
             RGB = config.params.RGB
+            prob_thresh = config.params.prob_thresh
+            nms_thresh = config.params.nms_thresh
           
 
             star_model = StarDist2D(config = None, name = star_model_name, basedir = model_dir)
@@ -67,6 +69,8 @@ def main(config : NeurIPSVollSegConfig):
                             lower_perc= lower_perc,
                             upper_perc=upper_perc,
                             n_tiles = n_tiles, 
+                            prob_thresh = prob_thresh,
+                            nms_thresh = nms_thresh,
                             slice_merge = slice_merge, 
                             UseProbability = UseProbability, 
                             save_dir = save_dir, 
