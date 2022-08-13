@@ -45,8 +45,10 @@ def main(config : NeurIPSVollSegConfig):
             Raw_path = Path(image_dir)
             Raw = list(Raw_path.glob(search_pattern))
             for fname in Raw:
-                    if pattern.__contains__('tiff' or 'tif'):
+                    if pattern.__contains__('tiff'):
                        image = imread(fname)
+                    if pattern.__contains__('tif'):
+                       image = imread(fname)   
                     if pattern.__contains__('png'):
                        image = imageio.imread(fname) 
                     if(len(image.shape)==2):
