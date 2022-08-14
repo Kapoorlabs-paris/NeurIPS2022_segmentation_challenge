@@ -53,7 +53,9 @@ for fname in filesRaw:
                 Label = np.asarray(Label)
                 noise_pixels = Augmentation2DC(mu = mu)
                 aug_noise_pixels,aug_noise_pixels_label  = noise_pixels.build(data=Data, label=Label)
-                
+                aug_noise_pixels = np.reshape(aug_noise_pixels, (512,512,3))
+                aug_noise_pixels_label = np.reshape(aug_noise_pixels_label, (512,512))
+                print(aug_noise_pixels.shape, aug_noise_pixels_label.shape)
                 Name = 'aug_noise_pixels' + str(count)
                 imwrite(Aug_image_dir + '/' + str(mu) + Name + '.tiff', aug_noise_pixels.astype('float32'))
                 imwrite(Aug_label_dir + '/' + str(mu) +  Name + '.tiff', aug_noise_pixels_label.astype('uint16'))
