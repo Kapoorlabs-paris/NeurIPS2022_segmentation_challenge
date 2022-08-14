@@ -36,6 +36,7 @@ filesLabel = list(label_dir.glob(pattern))
 
 Data = []
 Label = []
+count = 0
 for fname in filesRaw:
 
     for secondfname in filesLabel:
@@ -51,55 +52,14 @@ for fname in filesRaw:
                 Data = np.asarray(Data)
                 Label = np.asarray(Label)
                 noise_pixels = Augmentation2DC(mu = mu)
-                aug_noise_pixels = noise_pixels.build(data=Data, label=Label)
-                aug_noise_pixels_pair = np.asarray(next(aug_noise_pixels))
-                count = 0
-                for i in range(0, aug_noise_pixels_pair.shape[1]):
-                    Name = 'aug_noise_pixels' + str(count)
-                    imwrite(Aug_image_dir + '/' + Name + '.tiff', aug_noise_pixels_pair[0,i,:,:].astype('float32'))
-                    imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_noise_pixels_pair[1,i,:,:].astype('uint16'))
-                    count = count + 1
+                aug_noise_pixels,aug_noise_pixels_label  = noise_pixels.build(data=Data, label=Label)
+                
+                Name = 'aug_noise_pixels' + str(count)
+                imwrite(Aug_image_dir + '/' + Name + '.tiff', aug_noise_pixels.astype('float32'))
+                imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_noise_pixels_label.astype('uint16'))
+                count = count + 1
 
-                rotate_pixels = Augmentation2DC(rotate_axis = rotate_axis, rotate_angle = rotate_angle)
-                aug_rotate_pixels = rotate_pixels.build(data=Data, label=Label)
-                aug_rotate_pixels_pair = np.asarray(next(aug_rotate_pixels))
-                count = 0
-                for i in range(0, aug_rotate_pixels_pair.shape[1]):
-                    Name = 'rotate_pixels' + str(count)
-                    imwrite(Aug_image_dir + '/' + Name + '.tiff', aug_rotate_pixels_pair[0,i,:,:].astype('float32'))
-                    imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_rotate_pixels_pair[1,i,:,:].astype('uint16'))
-                    count = count + 1   
-
-                flip_pixels = Augmentation2DC(flip_axis = flip_axis)
-                aug_flip_pixels = flip_pixels.build(data=Data, label=Label)
-                aug_flip_pixels_pair = np.asarray(next(aug_flip_pixels))
-                count = 0
-                for i in range(0, aug_flip_pixels_pair.shape[1]):
-                    Name = 'aug_flip_pixels' + str(count)
-                    imwrite(Aug_image_dir + '/' + Name + '.tiff', aug_flip_pixels_pair[0,i,:,:].astype('float32'))
-                    imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_flip_pixels_pair[1,i,:,:].astype('uint16'))
-                    count = count + 1        
-
-                zoom_pixels = Augmentation2DC(zoom_axis = zoom_axis, zoom_range = zoom_range)
-                aug_zoom_pixels = zoom_pixels.build(data=Data, label=Label)
-                aug_zoom_pixels_pair = np.asarray(next(aug_zoom_pixels))
-                count = 0
-                for i in range(0, aug_zoom_pixels_pair.shape[1]):
-                    Name = 'aug_zoom_pixels' + str(count)
-                    imwrite(Aug_image_dir + '/' + Name + '.tiff', aug_zoom_pixels_pair[0,i,:,:].astype('float32'))
-                    imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_zoom_pixels_pair[1,i,:,:].astype('uint16'))
-                    count = count + 1   
-
-                shift_pixels = Augmentation2DC(shift_axis = shift_axis, shift_range = shift_range)
-                aug_shift_pixels = shift_pixels.build(data=Data, label=Label)
-                aug_shift_pixels_pair = np.asarray(next(aug_shift_pixels))
-                count = 0
-                for i in range(0, aug_shift_pixels_pair.shape[1]):
-                    Name = 'aug_shift_pixels' + str(count)
-                    imwrite(Aug_image_dir + '/' + Name + '.tiff', aug_shift_pixels_pair[0,i,:,:].astype('float32'))
-                    imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_shift_pixels_pair[1,i,:,:].astype('uint16'))
-                    count = count + 1    
-
+                
 
                 Data = []
                 Label = []           
