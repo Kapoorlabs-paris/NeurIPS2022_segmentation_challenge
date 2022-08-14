@@ -29,7 +29,7 @@ rotate_axis= 1
 size = (512,512)
 rotate_angle= 'random'
 pattern = '*.tiff'
-mu = 5
+mu = 15
 filesRaw = list(image_dir.glob(pattern))
 filesLabel = list(label_dir.glob(pattern))
 
@@ -55,8 +55,8 @@ for fname in filesRaw:
                 aug_noise_pixels,aug_noise_pixels_label  = noise_pixels.build(data=Data, label=Label)
                 
                 Name = 'aug_noise_pixels' + str(count)
-                imwrite(Aug_image_dir + '/' + Name + '.tiff', aug_noise_pixels.astype('float32'))
-                imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_noise_pixels_label.astype('uint16'))
+                imwrite(Aug_image_dir + '/' + str(mu) + Name + '.tiff', aug_noise_pixels.astype('float32'))
+                imwrite(Aug_label_dir + '/' + str(mu) +  Name + '.tiff', aug_noise_pixels_label.astype('uint16'))
                 count = count + 1
 
                 
