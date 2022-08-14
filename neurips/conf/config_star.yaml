@@ -15,6 +15,9 @@ params:
     load_data_sequence: False
     train_star: True
     RGB: True
+    def_shape_x : 512
+    def_shape_y: 512
+    def_shape_c: 3
 
 files:
   model_name : 'Kapoorlabs_NeuroIPS_p256_d2_f32_r64'

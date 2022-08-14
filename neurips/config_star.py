@@ -32,6 +32,9 @@ class Params:
     use_gpu_opencl: bool 
     load_data_sequence: bool
     RGB: bool
+    def_shape_x : int
+    def_shape_y: int
+    def_shape_c: int
 
 @dataclass
 class NeurIPSStarConfig:

@@ -31,7 +31,11 @@ def main(config : NeurIPSStarConfig):
             pattern = config.params.pattern
             RGB = config.params.RGB
             n_rays = config.params.n_rays
-
+            def_shape_x = config.params.def_shape_x 
+            def_shape_y = config.params.def_shape_y
+            def_shape_c = config.params.def_shape_c
+            def_shape = (def_shape_x, def_shape_y, def_shape_c)
+            def_label_shape = (def_shape_x, def_shape_y)
             SmartSeeds2D(base_dir = base_dir, 
                         model_name = model_name, 
                         model_dir = model_dir,
@@ -47,6 +51,8 @@ def main(config : NeurIPSStarConfig):
                         use_gpu = False,  
                         batch_size = batch_size, 
                         depth = depth, 
+                        def_shape = def_shape,
+                        def_label_shape = def_label_shape,
                         pattern = pattern,
                         kern_size = kern_size, 
                         startfilter = startfilter, 
