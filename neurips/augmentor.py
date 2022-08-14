@@ -51,7 +51,7 @@ for fname in filesRaw:
                 Data = np.asarray(Data)
                 Label = np.asarray(Label)
                 noise_pixels = Augmentation2DC(mu = mu)
-                aug_noise_pixels = noise_pixels.build(data=Data, label=Label, batch_size = Data.shape[0])
+                aug_noise_pixels = noise_pixels.build(data=Data, label=Label)
                 aug_noise_pixels_pair = np.asarray(next(aug_noise_pixels))
                 count = 0
                 for i in range(0, aug_noise_pixels_pair.shape[1]):
