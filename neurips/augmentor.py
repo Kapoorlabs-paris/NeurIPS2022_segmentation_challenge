@@ -7,11 +7,12 @@ import numpy as np
 from scipy.ndimage import gaussian_filter
 
 
-image_dir =  Path('/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw_resize/')
-label_dir = Path('/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/real_mask_resize/')
+image_dir =  Path('/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw_patches_512_xl/')
+label_dir = Path('/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/real_patch_mask_512_xl/')
 
-Aug_image_dir =  'gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw_aug/'
+Aug_image_dir =  '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw_aug/'
 Aug_label_dir = '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/real_mask_aug/'
+
 
 Path(Aug_image_dir).mkdir(exist_ok=True)
 Path(Aug_label_dir).mkdir(exist_ok=True)
@@ -28,7 +29,7 @@ rotate_axis= 1
 size = (512,512)
 rotate_angle= 'random'
 pattern = '*.tiff'
-
+mu = 5
 filesRaw = list(image_dir.glob(pattern))
 filesLabel = list(label_dir.glob(pattern))
 
@@ -49,6 +50,15 @@ for fname in filesRaw:
                 Label.append(labelimage)
                 Data = np.asarray(Data)
                 Label = np.asarray(Label)
+                noise_pixels = Augmentation2DC(mu = mu)
+                aug_noise_pixels = noise_pixels.build(data=Data, label=Label, batch_size = Data.shape[0])
+                aug_noise_pixels_pair = np.asarray(next(aug_noise_pixels))
+                count = 0
+                for i in range(0, aug_noise_pixels_pair.shape[1]):
+                    Name = 'aug_noise_pixels' + str(count)
+                    imwrite(Aug_image_dir + '/' + Name + '.tiff', aug_noise_pixels_pair[0,i,:,:].astype('float32'))
+                    imwrite(Aug_label_dir + '/' + Name + '.tiff', aug_noise_pixels_pair[1,i,:,:].astype('uint16'))
+                    count = count + 1
 
                 rotate_pixels = Augmentation2DC(rotate_axis = rotate_axis, rotate_angle = rotate_angle)
                 aug_rotate_pixels = rotate_pixels.build(data=Data, label=Label)
