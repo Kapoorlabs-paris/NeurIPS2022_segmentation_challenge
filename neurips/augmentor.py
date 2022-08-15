@@ -47,21 +47,28 @@ for fname in filesRaw:
                 image = imread(fname)
                
                 labelimage = gaussian_filter(imread(secondfname), gauss_filter_size)
-                Data.append(image)
-                Label.append(labelimage)
-                Data = np.asarray(Data)
-                Label = np.asarray(Label)
-                noise_pixels = Augmentation2DC(mu = mu)
-                aug_noise_pixels,aug_noise_pixels_label  = noise_pixels.build(data=Data, label=Label)
-                aug_noise_pixels = np.reshape(aug_noise_pixels, (512,512,3))
-                aug_noise_pixels_label = np.reshape(aug_noise_pixels_label, (512,512))
-                print(aug_noise_pixels.shape, aug_noise_pixels_label.shape)
-                Name = 'aug_noise_pixels' + str(count)
-                imwrite(Aug_image_dir + '/' + str(mu) + Name + '.tiff', aug_noise_pixels.astype('float32'))
-                imwrite(Aug_label_dir + '/' + str(mu) +  Name + '.tiff', aug_noise_pixels_label.astype('uint16'))
-                count = count + 1
-
+                Data = image
+                Label = labelimage
                 
 
-                Data = []
-                Label = []           
+                flip_pixels = Augmentation2DC(flip_axis = flip_axis)
+                aug_flip_pixels,aug_flip_pixels_label  = flip_pixels.build(data=Data, label=Label)
+                aug_flip_pixels = np.reshape(aug_flip_pixels, (512,512,3))
+                aug_flip_pixels_label = np.reshape(aug_flip_pixels_label, (512,512))
+
+                Name = 'aug_flip_pixels' + str(count)
+                imwrite(Aug_image_dir + '/' + str(mu) + Name + '.tiff', aug_flip_pixels.astype('float32'))
+                imwrite(Aug_label_dir + '/' + str(mu) +  Name + '.tiff', aug_flip_pixels_label.astype('uint16'))
+                count = count + 1
+        
+                rotate_pixels = Augmentation2DC(rotate_axis = rotate_axis, rotate_angle = rotate_angle)
+                aug_rotate_pixels,aug_rotate_pixels_label  = rotate_pixels.build(data=Data, label=Label)
+                aug_rotate_pixels = np.reshape(aug_rotate_pixels, (512,512,3))
+                aug_rotate_pixels_label = np.reshape(aug_rotate_pixels_label, (512,512))
+
+                Name = 'aug_rotate_pixels' + str(count)
+                imwrite(Aug_image_dir + '/' + str(mu) + Name + '.tiff', aug_rotate_pixels.astype('float32'))
+                imwrite(Aug_label_dir + '/' + str(mu) +  Name + '.tiff', aug_rotate_pixels_label.astype('uint16'))
+                count = count + 1 
+                
+        
