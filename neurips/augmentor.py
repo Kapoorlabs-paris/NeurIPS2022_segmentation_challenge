@@ -47,9 +47,10 @@ for fname in filesRaw:
                 image = imread(fname)
                
                 labelimage = gaussian_filter(imread(secondfname), gauss_filter_size)
-                Data = image
-                Label = labelimage
-                
+                Data.append(image)
+                Label.append(labelimage)
+                Data = np.asarray(Data)
+                Label = np.asarray(Label)
 
                 flip_pixels = Augmentation2DC(flip_axis = flip_axis)
                 aug_flip_pixels,aug_flip_pixels_label  = flip_pixels.build(data=Data, label=Label)
@@ -71,4 +72,6 @@ for fname in filesRaw:
                 imwrite(Aug_label_dir + '/' + str(mu) +  Name + '.tiff', aug_rotate_pixels_label.astype('uint16'))
                 count = count + 1 
                 
-        
+
+                Data = []
+                Label = []           
