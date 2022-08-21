@@ -31,7 +31,8 @@ rotation_angles = [2, 4, 6, 8, 12]
 pattern = '*.tiff'
 sigma = 10
 mean = 0
-alpha_affine = 1.2
+alpha_affine = 1.8
+alpha = 3
 distribution = 'Both'
 filesRaw = list(image_dir.glob(pattern))
 filesLabel = list(label_dir.glob(pattern))
@@ -76,7 +77,7 @@ for fname in filesRaw:
                     imwrite(save_name_seg, aug_addnoise_pixels_label.astype('uint16'))
                 count = count + 1                
  
-                adddeform_pixels = Augmentation2DC(alpha_affine = alpha_affine, sigma = sigma)
+                adddeform_pixels = Augmentation2DC(alpha_affine = alpha_affine, alpha = alpha, sigma = sigma)
 
                 aug_adddeform_pixels,aug_adddeform_pixels_label  = adddeform_pixels.build(image = np.copy(image), labelimage = labelimage)
                 
