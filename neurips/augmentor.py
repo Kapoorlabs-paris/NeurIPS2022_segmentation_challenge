@@ -10,12 +10,12 @@ from scipy.ndimage import gaussian_filter
 image_dir =  Path('/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw_patches_512_xl/')
 label_dir = Path('/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/real_patch_mask_512_xl/')
 
-Aug_image_dir =  '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw_aug/'
-Aug_label_dir = '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/real_mask_aug/'
+aug_image_dir =  '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/raw_aug/'
+aug_seg_image_dir = '/gpfsscratch/rech/jsy/uzj81mi/Segmentation_challenge/NeurIPS_CellSegData/Train_Labeled/real_mask_aug/'
 
 
-Path(Aug_image_dir).mkdir(exist_ok=True)
-Path(Aug_label_dir).mkdir(exist_ok=True)
+Path(aug_image_dir).mkdir(exist_ok=True)
+Path(aug_seg_image_dir).mkdir(exist_ok=True)
 
 gauss_filter_size = 0
 #choices for augmentation below are 1 or 2 or None
@@ -27,9 +27,10 @@ shift_range= 0.2
 zoom_range= 2
 rotate_axis= 1
 size = (512,512)
-rotate_angle= 'random'
+rotation_angles = [20, 40, 60, 80, 120] 
 pattern = '*.tiff'
-mu = 15
+sigma = 10
+distribution = 'Both'
 filesRaw = list(image_dir.glob(pattern))
 filesLabel = list(label_dir.glob(pattern))
 
@@ -41,37 +42,23 @@ for fname in filesRaw:
 
     for secondfname in filesLabel:
 
-        Name = os.path.basename(os.path.splitext(fname)[0])
+        name = os.path.basename(os.path.splitext(fname)[0])
         LabelName = os.path.basename(os.path.splitext(secondfname)[0])
-        if Name == LabelName:
+        if name == LabelName:
                 image = imread(fname)
                
                 labelimage = gaussian_filter(imread(secondfname), gauss_filter_size)
-                Data.append(image)
-                Label.append(labelimage)
-                Data = np.asarray(Data)
-                Label = np.asarray(Label)
+                for rotate_angle in rotation_angles:
+                                
+                                rotate_pixels = Augmentation2DC(rotate_angle = rotate_angle)
 
-                flip_pixels = Augmentation2DC(flip_axis = flip_axis)
-                aug_flip_pixels,aug_flip_pixels_label  = flip_pixels.build(data=Data, label=Label)
-                aug_flip_pixels = np.reshape(aug_flip_pixels, (512,512,3))
-                aug_flip_pixels_label = np.reshape(aug_flip_pixels_label, (512,512))
-
-                Name = 'aug_flip_pixels' + str(count)
-                imwrite(Aug_image_dir + '/' + str(mu) + Name + '.tiff', aug_flip_pixels.astype('float32'))
-                imwrite(Aug_label_dir + '/' + str(mu) +  Name + '.tiff', aug_flip_pixels_label.astype('uint16'))
-                count = count + 1
-        
-                rotate_pixels = Augmentation2DC(rotate_axis = rotate_axis, rotate_angle = rotate_angle)
-                aug_rotate_pixels,aug_rotate_pixels_label  = rotate_pixels.build(data=Data, label=Label)
-                aug_rotate_pixels = np.reshape(aug_rotate_pixels, (512,512,3))
-                aug_rotate_pixels_label = np.reshape(aug_rotate_pixels_label, (512,512))
-
-                Name = 'aug_rotate_pixels' + str(count)
-                imwrite(Aug_image_dir + '/' + str(mu) + Name + '.tiff', aug_rotate_pixels.astype('float32'))
-                imwrite(Aug_label_dir + '/' + str(mu) +  Name + '.tiff', aug_rotate_pixels_label.astype('uint16'))
-                count = count + 1 
-                
-
-                Data = []
-                Label = []           
+                                aug_rotate_pixels,aug_rotate_pixels_label  = rotate_pixels.build(image = np.copy(image), labelimage = labelimage)
+                                
+                               
+                                save_name_raw = aug_image_dir + '/' + 'rotation_' +  str(rotate_angle) + name + '.tif'
+                                save_name_seg = aug_seg_image_dir + '/' + 'rotation_' +  str(rotate_angle) + name + '.tif'
+                                if os.path.exists(save_name_raw) == False:
+                                    imwrite(save_name_raw, aug_rotate_pixels.astype('float32'))
+                                if os.path.exists(save_name_seg) == False:    
+                                    imwrite(save_name_seg, aug_rotate_pixels_label.astype('uint16'))
+                                count = count + 1   
