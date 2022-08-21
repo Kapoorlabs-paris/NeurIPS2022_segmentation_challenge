@@ -49,7 +49,20 @@ for fname in filesRaw:
                 image = imread(fname)
                
                 labelimage = imread(secondfname)
-                 
+                for rotate_angle in rotation_angles:
+                                
+                                rotate_pixels = Augmentation2DC(rotate_angle = rotate_angle)
+
+                                aug_rotate_pixels,aug_rotate_pixels_label  = rotate_pixels.build(image = np.copy(image), labelimage = labelimage)
+                                
+                               
+                                save_name_raw = aug_image_dir + '/' + 'rotation_' +  str(rotate_angle) + name + '.tiff'
+                                save_name_seg = aug_seg_image_dir + '/' + 'rotation_' +  str(rotate_angle) + name + '.tiff'
+                                if os.path.exists(save_name_raw) == False:
+                                    imwrite(save_name_raw, aug_rotate_pixels.astype('float32'))
+                                if os.path.exists(save_name_seg) == False:    
+                                    imwrite(save_name_seg, aug_rotate_pixels_label.astype('uint16'))
+                                count = count + 1   
 
                 addnoise_pixels = Augmentation2DC(mean = mean, sigma = sigma, distribution = distribution)
 
